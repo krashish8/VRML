@@ -1,0 +1,69 @@
+#VRML V2.0 utf8
+
+# This LOD has 3 levels, the most detailed one comes first
+#voici mon fichier pour mon monde ludo
+#Yasmin Shubber
+DEF LotA5 Group {
+   children [
+     DEF Viewpoints Group {
+       children [
+	# 
+	DEF FrontView-A-5 Viewpoint {
+	  position 0 1 30
+        orientation 0 1 0 0
+	  fieldOfView 1.3
+	  description "E5: Front View"
+	}
+
+	DEF SkyView-A-5 Viewpoint {
+	  position 0 100 0
+	  orientation 1.0 0.0 0.0 -1.571
+	  description "E5: Sky View"
+	}
+       ]
+     } # End Viewpoints
+
+
+Background {
+
+
+skyAngle     [ 0.7, 1.2, 1.6, 2.2 ]
+
+skyColor     [ 0 0 0.9, 0 0.2 0.7, 0 0.3 0.6, 0 0.4 0.3]
+ }
+
+     #
+     # A floor
+     #
+     Inline {
+       url "floor.wrl"
+     }
+
+     #
+     # The Scene
+     #
+     LOD {
+      center	0.0 0.0 0.0
+      # range	[ 8.0, 50.0]
+      range	[ 50.0 ]
+      level	[
+		 # LEVEL III: The world
+		 Inline {
+		    url "entry3.wrl"
+		 }
+
+		 # LEVEL II: The world from quite near
+		 # Inline {
+		 #   url "entry2.wrl"
+		 # }
+
+		 # LEVEL I: Some very simple geometry
+		 Inline {
+		    url "entry.wrl"
+		 }
+		]
+    }
+] # end group
+
+}
+

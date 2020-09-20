@@ -1,0 +1,126 @@
+#VRML V2.0 utf8
+WorldInfo {
+   title "Traffic light system"
+}
+NavigationInfo {
+   type "ANY"
+}
+Background {
+   skyColor [0.0 0.2 0.7, 0.0 0.5 1.0, 1.0 1.0 1.0 ]
+   skyAngle [1.309, 1.571]
+   #groundColor [0 0 0, 0 0 0]
+   #groundAngle [1.57]
+}
+Viewpoint {
+   position -6 2 15
+   orientation 1 0 0 -0.2
+   description "View from eyelevel"
+}
+Viewpoint {
+   position  2.0 2.0 0.0
+   orientation 0 1 0 0.785
+   description "View of the lights"
+}
+Viewpoint { 
+   position    0 25 0
+   orientation 1  0 0 -1.57
+   description "View from directly above"
+}
+Viewpoint {
+   position 0 20 18
+   orientation 1 0 0 -0.785
+   description "High-angled view" 
+}  
+DirectionalLight {
+   on         TRUE
+   intensity  1.0
+   color      1.0 1.0 1.0  
+   ambientIntensity 1.0
+   direction  0.0 -1.0 0.0
+} 
+
+Group {
+   children [
+      Inline {
+         url "Ground.wrl"
+      },
+      Transform {
+          translation 0.0 0.0 8.0
+          children [
+               Inline {
+                  url "Trafficlight1.wrl"
+               }
+          ]
+      },
+      Transform {
+          translation 0.0 0.0  8.0
+	  rotation    0.0 1.0  0.0 3.14
+             children [
+               Inline {
+                  url "Trafficlight1.wrl"
+               }
+             ]
+      },
+      Transform {
+          translation -8.0 0.0 8.0
+          children [
+               Inline {
+                  url "Trafficlight1.wrl"
+               }
+          ]
+      },
+      Transform {
+          translation 0.0 0.0  -8.0
+	  rotation    0.0 1.0  0.0 3.14
+             children [
+               Inline {
+                  url "Trafficlight1.wrl"
+               }
+             ]
+      },
+      Transform {
+          translation 0.0 0.0 -8.0
+          children [
+               Inline {
+                  url "Trafficlight1.wrl"
+               }
+          ]
+      },
+      Transform {
+          translation 8.0 0.0  -8.0
+	  rotation    0.0 1.0  0.0 3.14
+             children [
+               Inline {
+                  url "Trafficlight1.wrl"
+               }
+             ]
+      },
+      Transform {
+          translation 11.0 0.0  6.0
+          rotation    0.0 1.0   0.0 1.57
+             children [
+                Inline {
+                   url "Trafficlight2.wrl"
+                }
+             ]
+      },
+      Transform {
+          translation -11.0 0.0 -6.0
+          rotation     0.0 1.0  0.0 -1.57
+             children [
+                Inline {
+                   url "Trafficlight2.wrl"
+                }
+             ]
+      },	
+      Transform {
+          translation -11.0 0.0 -6.0
+          rotation     0.0 1.0  0.0 1.57
+             children [
+                Inline {
+                   url "Trafficlight2.wrl"
+                }
+             ]
+      }		
+   ]
+}

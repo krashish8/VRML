@@ -1,0 +1,298 @@
+#VRML V2.0 utf8 
+
+EXTERNPROTO TheSwingSet [
+ field SFVec3f translation
+ exposedField SFRotation rotation
+ exposedField SFVec3f scale
+]
+"theswingset.wrl.gz#TheSwingSet"
+
+EXTERNPROTO TheTeeterTotter [
+ field SFVec3f translation
+ exposedField SFRotation rotation
+ exposedField SFVec3f scale
+]
+"theteetertotter.wrl.gz#TheTeeterTotter"
+
+EXTERNPROTO TheWell [
+ field SFVec3f translation
+ exposedField SFRotation rotation
+ exposedField SFVec3f scale
+]
+"thewell.wrl.gz#TheWell"
+
+DEF TheWorldInfo WorldInfo {
+  title "The zoo island"
+  info "
+
+		Author: Silvere Martin-Michiellot
+
+		Date: March 1998
+
+		Copyright:	Free of all Copyrights
+
+				Based on the objects given in the Tryout version of VRCreator 2.0 by Platinium"
+}
+
+DEF TheWalkNavigationInfo NavigationInfo {
+  type [
+    "WALK",
+    "ANY"
+  ]
+}
+
+DEF TheFlyNavigationInfo NavigationInfo {
+  type [
+    "FLY",
+    "ANY"
+  ]
+}
+
+Transform {
+	 translation 0 2 0
+	 children DEF FlatWorldProxy ProximitySensor {size 1000 20 1000}
+}
+
+Transform {
+	 translation 0 0 0
+	 children DEF UniverseProxy ProximitySensor {size 1000 1000 1000}
+}
+
+DEF TheBackground Background {
+  skyColor [
+    0 0 1,
+    1 0 1
+  ]
+  skyAngle 2.5
+  groundColor [
+    0 0 1,
+    0 0 1
+  ]
+  groundAngle 1.58
+}
+
+DEF TheGazeboView Viewpoint {
+  description "Gazebo View"
+  position -30 6.7 40
+  orientation 0 1 0 -1
+}
+
+DEF ThePicnic Viewpoint {
+  description "Picnic View"
+  position 100 6.7 0
+  orientation 0 1 0 -1.58
+}
+
+DEF TheDinosaurs Viewpoint {
+  description "Dinosaurs View"
+  position 60 1.7 95
+  orientation 0 1 0 -2.5
+}
+
+DEF TheBirds Viewpoint {
+  description "Birds View"
+  position 44 6.7 -113
+  orientation 0 1 0 -1.2
+}
+
+DEF TheInsects Viewpoint {
+  description "Insects View"
+  position -65 1.7 -130
+  orientation 0 1 0 1
+}
+
+DEF TheSeaCreatures Viewpoint {
+  description "Sea Creatures View"
+  position -80 9.7 -45
+  orientation 0 1 0 1.58
+}
+
+DEF TheLandCreatures Viewpoint {
+  description "Land Creatures View"
+  position -10 1.7 130
+  orientation 0 1 0 3.14
+}
+
+DEF TheBridgeView Viewpoint {
+  description "Bridge View"
+  position -70 1.7 135
+  orientation 0 1 0 1.58
+}
+
+DEF TheSmallIslandView Viewpoint {
+  description "Small Island View"
+  position -130 2.7 132
+  orientation 0 1 0 2
+}
+
+DEF TheTopView Viewpoint {
+  description "Top View"
+  position 0 500 10
+  orientation 1 0 0 -1.58
+}
+
+DEF TheOverView Viewpoint {
+  description "Overview"
+  position 0 100 300
+  orientation 1 0 0 -0.4
+}
+
+DEF TheSun DirectionalLight {
+  direction 0 -1 0
+  ambientIntensity 1
+}
+
+DEF TheGeosphere Transform {
+  children [
+    Transform {
+      translation 0 -0.6 0
+      rotation 0 1 0 0
+      children [
+        Shape {
+          geometry DEF TheWater Box {
+            size 1000 1 1000
+          }
+          appearance Appearance {
+            material Material {
+              diffuseColor 0 0 1
+            }
+          }
+        }
+      ]
+    }
+    Transform {
+      translation -190 0 -190
+      rotation 0 1 0 0
+      scale 20 5 20
+      children [
+        Shape {
+          geometry DEF TheLand ElevationGrid {
+            xDimension 20
+            xSpacing 1
+            zDimension 20
+            zSpacing 1
+		creaseAngle 1.58
+            height [
+              -1, -1, -1, -1, -1,
+              -1, -1, -1, -1, -1,
+              -1, -1, -1, -1, -1,
+              -1, -1, -1, -1, -1,
+              -1, -1, -1, 0, 0,
+              0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0,
+              0, 0, -1, -1, -1,
+              -1, -1, 0, 0, 0,
+              0, 0, 0, 0, 0,
+              0, 1, 1, 1, 1,
+              0, 0, 0, -1, -1,
+              -1, 0, 0, 1, 0,
+              0, 0, 0, 0, 0,
+              1, 1, 1, 1, 1,
+              1, 0, 0, -1, -1,
+              -1, 0, 1, 1, 0,
+              0, 0, 0, 0, 0,
+              0, 1, 1, 1, 1,
+              1, 0, 0, 0, -1,
+              -1, 0, 1, 1, 1,
+              1, 1, 0, 0, 0,
+              0, 0, 0, 1, 1,
+              1, 0, 0, 0, -1,
+              -1, 1, 2, 2, 2,
+              2, 1, 0, 0, 0,
+              0, 0, 0, 0, 1,
+              1, 1, 0, 0, -1,
+              -1, 1, 2, -1, -1,
+              2, 1, 0, 0, 0,
+              0, 0, 0, 0, 1,
+              1, 1, 0, 0, -1,
+              -1, 1, 2, -1, -1,
+              2, 1, 0, 0, 0,
+              0, 0, 0, 0, 1,
+              1, 1, 0, 0, -1,
+              -1, 0, 2, 2, 2,
+              1, 0, 0, 0, 0,
+              0, 0, 0, 0, 1,
+              1, 1, 0, 0, -1,
+              -1, 0, 1, 1, 1,
+              0, 0, 0, 0, 0,
+              0, 0, 0, 0, 1,
+              1, 1, 0, 0, -1,
+              -1, 0, 0, 1, 1,
+              1, 0, 0, 1, 1,
+              0, 0, 0, 0, 1,
+              1, 1, 0, 0, -1,
+              -1, 0, 0, 0, 1,
+              1, 0, 0, 1, 1,
+              0, 0, 0, 0, 1,
+              1, 1, 0, 0, -1,
+              -1, -1, 0, 0, 0,
+              0, 0, 0, 0, 0,
+              0, 0, 0, 0, 1,
+              1, 0, 0, -1, -1,
+              -1, -1, -1, -1, 0,
+              0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0,
+              0, 0, 0, -1, -1,
+              -1, -1, -1, -1, -1,
+              0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0,
+              0, 0, 0, -1, -1,
+              -1, 0, 0, 0, -1,
+              0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0,
+              0, 0, 0, -1, -1,
+              -1, 0, 1, 0, -1,
+              0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0,
+              0, 0, -1, -1, -1,
+              -1, 0, 0, 0, -1,
+              -1, -1, 0, 0, 0,
+              0, -1, 0, 0, 0,
+              0, -1, -1, -1, -1,
+              -1, -1, -1, -1, -1,
+              -1, -1, -1, -1, -1,
+              -1, -1, -1, -1, -1,
+              -1, -1, -1, -1, -1
+            ]
+          }
+          appearance Appearance {
+            material Material {
+              diffuseColor 0 0.6 0
+              specularColor 0.25 0 0.2
+              ambientIntensity 0
+              shininess 0.1
+            }
+		texture ImageTexture {
+		  url "thesurface.jpg"
+		}
+          }
+        }
+      ]
+    }
+  ]
+}
+
+DEF ThePicnicPlace Group {
+  children [
+    TheSwingSet {
+      translation 108 4.2 16
+	rotation 0 1 0 0
+	scale 0.03 0.03 0.03
+    }
+    TheTeeterTotter {
+      translation 118 5.38 14
+	rotation 0 1 0 0
+	scale 0.03 0.03 0.03
+    }
+    TheTeeterTotter {
+      translation 123 5.38 14
+	rotation 0 1 0 0
+	scale 0.03 0.03 0.03
+    }
+    TheWell {
+      translation 122 5 -7
+	rotation 0 1 0 0
+      scale 1 1 1
+    }
+]
+}

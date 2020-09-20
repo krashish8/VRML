@@ -1,0 +1,203 @@
+#VRML V2.0 utf8
+#viewpoint
+Viewpoint { position 1.5 0.2 2 
+	    orientation 0 1 0 0.5
+	    description "Souris"
+}
+#Yeux
+Transform {
+   translation -0.03 0.027 0.05
+   children [
+      DEF Oeil_g Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0 0 0
+	    }
+	 }
+	 geometry Sphere {
+	    radius 0.03
+	 }
+      }
+     ]
+}
+Transform {
+   translation 0.03 0.027 0.05
+   children [
+      DEF Oeil_d Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0 0 0
+	    }
+	 }
+	 geometry Sphere {
+	    radius 0.03
+	 }
+      }
+     ]
+}
+#oreilles
+Transform {
+   translation -0.05 0.065 -0.01
+   rotation 1 0 0 1.570796
+   children [
+      DEF Oreille_g Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0.4 0.4 0.1
+	    }
+	 }
+	 geometry Cylinder {
+	    radius 0.05
+	    height 0.01
+	 }
+      }
+     ]
+}
+Transform {
+   translation 0.05 0.065 -0.01
+   rotation 1 0 0 1.570796
+   children [
+      DEF Oreille_d Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0.4 0.4 0.1
+	    }
+	 }
+	 geometry Cylinder {
+	    radius 0.05
+	    height 0.01
+	 }
+      }
+     ]
+}
+
+#Nez
+Transform {
+   translation 0 0 0.1
+   rotation 1 0 0 1.570796
+   children [
+      DEF Nez Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor .1 0.8 .1
+	    }
+	 }
+	 geometry Cone {
+	    bottomRadius 0.1
+	    height 0.3
+	 }
+      }
+     ]
+}
+Transform {
+   translation 0 0 0.24
+   children [
+      DEF Museau Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0.4 0.4 0.1
+	    }
+	 }
+	 geometry Sphere {
+	    radius 0.01
+	 }
+      }
+     ]
+}
+#corps
+Transform {
+   translation 0 0 -0.21
+   scale 0.3 0.3 0.5
+   children [
+      DEF Sphere Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor .1 0.8 .1
+	    }
+	 }
+	 geometry Sphere {
+	    radius 0.5
+	 }
+      }
+     ]
+}
+#queue
+Transform {
+   translation 0 0 -0.5
+   rotation 1 0 0 -1.570796
+   scale 0.1 0.1 0.05
+   children [
+      DEF Nez Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0.5 0.8 0.1
+	    }
+	 }
+	 geometry Cone {
+	    bottomRadius 0.5
+	    height 8
+	 }
+      }
+     ]
+}
+#pates
+Transform {
+   translation -0.03 -0.12 -0.1
+   children [
+      DEF PAvG Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0.5 0.8 0.1
+	    }
+	 }
+	 geometry Box {
+	    size 0.03 0.1 0.03
+	 }
+      }
+     ]
+}
+Transform {
+   translation 0.03 -0.12 -0.1
+   children [
+      DEF PAvD Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0.5 0.8 0.1
+	    }
+	 }
+	 geometry Box {
+	    size 0.03 0.1 0.03
+	 }
+      }
+     ]
+}
+Transform {
+   translation -0.03 -0.12 -0.3
+   children [
+      DEF PArG Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0.5 0.8 0.1
+	    }
+	 }
+	 geometry Box {
+	    size 0.03 0.1 0.03
+	 }
+      }
+     ]
+}
+Transform {
+   translation 0.03 -0.12 -0.3
+   children [
+      DEF PArD Shape {
+	 appearance Appearance {
+	    material Material {
+	       diffuseColor 0.5 0.8 0.1
+	    }
+	 }
+	 geometry Box {
+	    size 0.03 0.1 0.03
+	 }
+      }
+     ]
+}

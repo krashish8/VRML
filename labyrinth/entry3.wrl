@@ -1,0 +1,19 @@
+#VRML V2.0 utf8
+
+WorldInfo {
+  info  ["Parcelle XXX", "Vue de tres loin", "par YYYY", "Version 0 - Mai 97"]#monde de Yasmin Shubber dans ludo
+ #vue de près, monde avec tous les détails
+  title "Monde avec tous les details"
+}
+
+NavigationInfo { type [ "WALK"] }
+
+Transform {
+ translation 15 -0.45 5
+ rotation 0 1 0 3.14
+ children [
+   Inline { url "labyfinal.wrl" }
+ ]
+
+
+}

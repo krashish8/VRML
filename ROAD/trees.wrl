@@ -1,0 +1,108 @@
+#VRML V2.0 utf8
+#Traffic light system - Trees component 
+Group {
+    children [
+    # Tree in a Billboard group
+    # This uses the special billboard group to give the impresion of a 3D tree.
+    # The image of a tree whose surroundings have been made transparent is placed
+    # on a billboard which revolves on the y-axis to face the viewer.
+     DEF tree Billboard {
+            axisOfRotation 0.0 1.0 0.0
+            children [
+                # Tree face
+                     Shape {
+                        appearance Appearance {
+                            texture ImageTexture {
+                                url "tree1.png"
+                                #This is the tree image which has a transparent surrounding 
+                            }
+                        }
+                        #These are the dimensions of the billboard onto which the tree is placed
+                        geometry IndexedFaceSet {
+                            coord Coordinate {
+                                point [
+                                   -1.51 0.0 0.0,   1.51 0.0 0.0,
+                                    1.51 3.0 0.0,  -1.51 3.0 0.0,
+                                ]
+                            }
+                            coordIndex [ 0, 1, 2, 3 ]
+                            solid FALSE
+                        }
+                     }
+            ]
+        }
+      #Trees x-direction
+      #The tree billboard is reused to form a line of trees
+      Transform {
+         translation 3.0 0.0 0.0
+           children USE tree
+      }
+      Transform {
+         translation 6.0 0.0 0.0
+           children USE tree
+      }
+      Transform {
+         translation 9.0 0.0 0.0
+           children USE tree
+      }
+      Transform {
+         translation 12.0 0.0 0.0
+           children USE tree
+      }
+      Transform {
+         translation 15.0 0.0 0.0
+           children USE tree
+      }
+      Transform {
+         translation 18.0 0.0 0.0
+           children USE tree
+      }
+      Transform {
+         translation 21.0 0.0 0.0
+           children USE tree
+      }
+      Transform {
+         translation 24.0 0.0 0.0
+           children USE tree
+      }
+      #Trees -Z direction
+      Transform {
+         translation 0.0 0.0 -3.0
+           children USE tree
+      }
+      Transform {
+         translation 0.0 0.0 -6.0
+           children USE tree
+      }
+     
+      Transform {
+         translation 0.0 0.0 -9.0
+           children USE tree
+      }
+      
+      Transform {
+         translation 0.0 0.0 -12.0
+           children USE tree
+      }
+     
+      Transform {
+         translation 0.0 0.0 -15.0
+           children USE tree
+      }
+      
+      Transform {
+         translation 0.0 0.0 -18.0
+           children USE tree
+      }
+      Transform {
+         translation 0.0 0.0 -21.0
+           children USE tree
+      }
+      Transform {
+         translation 0.0 0.0 -24.0
+           children USE tree
+      }
+
+
+    ]
+}

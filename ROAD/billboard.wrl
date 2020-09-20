@@ -1,0 +1,60 @@
+#VRML V2.0 utf8
+#Traffic Light system - Billboard component
+#Designed by Colm O'Carra
+Group {
+   children [
+       Shape { 
+         appearance Appearance {
+             material Material {}
+         }
+         geometry Box {size 10.4 4.4 0.1}
+       }, 
+       Transform {
+         translation 0.0 0.0 0.03
+         children Shape {
+         #This is the image on the billboard (the nuig logo)
+          appearance Appearance {
+              texture ImageTexture {
+                  url "nuig-col.gif"
+              }
+          }
+          geometry Box {
+               size 10.0 4.0 0.05
+          }
+         }
+       },
+       #This is the strut that holds up the sign
+       DEF Strut Transform {
+         translation -4.0 -2.0  -0.08
+         children [
+           Shape {
+            appearance Appearance {
+                material Material {}
+            }
+            geometry Box {
+                 size 0.1 4.0 0.15
+            }
+           }
+           Transform {
+             translation 0.0 -0.9 -1.2
+             rotation    1.0 0.0 0.0 0.785
+             children Shape {
+               appearance Appearance {
+                  material Material {}
+               }
+               geometry Box { size 0.1 3.4 0.15}
+             }
+           }
+
+         ]
+       },
+       Transform {
+         translation 8.0 0.0 0.0
+         children USE Strut
+       }
+           
+   ]
+}
+               
+                
+   
