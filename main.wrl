@@ -81,7 +81,7 @@ DEF TheBackground Background {
 DEF TheGazeboView Viewpoint {
   description "Gazebo View"
   position -30 6.7 40
-  orientation 0 1 0 -1
+  #orientation 0 1 0 -1
 }
 
 DEF TheSun DirectionalLight {
@@ -270,6 +270,26 @@ scale 1 1 1
 children [
  Inline {
   url "slide.wrl"
+  }
+]
+}
+
+DEF Tree Transform {
+translation 10 0 10
+scale 1 1 1
+children [
+ Inline {
+  url "tree1.wrl"
+  }
+]
+}
+
+DEF Plane Transform {
+#translation  10 0 10
+scale 10 10 10
+children [
+ Inline {
+  url "random-models/plane.wrl"
   }
 ]
 }

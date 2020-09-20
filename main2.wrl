@@ -1,0 +1,135 @@
+#VRML V2.0 utf8
+
+#Set Background
+Background {
+	skyAngle [   2 ]
+	skyColor [    0.6 1 1, 1 0.8 0.6 ]
+	groundAngle [ 0.5, 1, 1.53 ]
+	groundColor [ 0 0 0, 0.2 0.5 0, 0.3 0.4 0, 0.8 0.6 0.4 ]
+}
+
+#Set ViewPoint
+Viewpoint { 
+   position  0 0 0
+}
+
+#Increase frame size
+Shape {
+    geometry Box {
+    size 20000 10000 20000
+  }
+  appearance Appearance {
+           material Material { 
+      diffuseColor 1 1 1
+      transparency 0
+     }
+    }
+}
+
+
+
+#Primary Ground
+Transform{
+   translation 0 -5.1 0
+   children[
+      Shape {
+         geometry Box {
+           size 20000 10 20000
+         }
+         appearance Appearance {
+            texture ImageTexture {
+               url "swing/thesurface.jpg"
+               repeatS FALSE
+               repeatT FALSE
+            }
+         }
+      }
+   ]
+}
+
+
+DEF MerryGoRound Transform {
+  translation -2000 100 -5000
+  scale 100 100 100
+  children [
+   Inline {
+    url "merry-go-round.wrl"
+    }
+  ]
+}
+
+
+DEF Tree Transform {
+translation 5000 0 -5000
+scale 100 100 100
+children [
+ Inline {
+  url "tree1.wrl"
+  }
+]
+}
+
+
+DEF Plane Transform {
+translation 2500 1000 -5000
+scale 20 20 20
+children [
+ Inline {
+  url "random-models/plane.wrl"
+  }
+]
+}
+
+
+DEF Spiral Transform {
+translation 0 100 -5000
+scale 100 100 100
+children [
+ Inline {
+  url "spiral.wrl"
+  }
+]
+}
+
+
+
+EXTERNPROTO TheSwingSet [
+ field SFVec3f translation
+ exposedField SFRotation rotation
+ exposedField SFVec3f scale
+]
+"swing/theswingset.wrl.gz#TheSwingSet"
+
+EXTERNPROTO TheWell [
+ field SFVec3f translation
+ exposedField SFRotation rotation
+ exposedField SFVec3f scale
+]
+"swing/thewell.wrl.gz#TheWell"
+
+
+DEF ThePicnicPlace Group {
+  children [
+    TheSwingSet {
+      translation 2000 -500 -5000
+  rotation 0 1 0 0
+  scale 10 10 10
+    }
+    TheWell {
+      translation 5000 0 0
+  rotation 0 1 0 0
+  scale 1000 1000 1000
+    }
+]
+}
+
+
+DEF Spiral Transform {
+translation 0 500 5000
+scale 300 300 300
+children [
+ Inline {
+  url "slide.wrl"
+  }
+]
+}
