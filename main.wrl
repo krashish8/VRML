@@ -1,25 +1,32 @@
 #VRML V2.0 utf8 
 
+NavigationInfo {
+  avatarSize [0.25, 3.6, 0.75]
+  speed 20.0
+  type "WALK"
+}
+
+
 EXTERNPROTO TheSwingSet [
  field SFVec3f translation
  exposedField SFRotation rotation
  exposedField SFVec3f scale
 ]
-"theswingset.wrl.gz#TheSwingSet"
+"swing/theswingset.wrl.gz#TheSwingSet"
 
 EXTERNPROTO TheTeeterTotter [
  field SFVec3f translation
  exposedField SFRotation rotation
  exposedField SFVec3f scale
 ]
-"theteetertotter.wrl.gz#TheTeeterTotter"
+"swing/theteetertotter.wrl.gz#TheTeeterTotter"
 
 EXTERNPROTO TheWell [
  field SFVec3f translation
  exposedField SFRotation rotation
  exposedField SFVec3f scale
 ]
-"thewell.wrl.gz#TheWell"
+"swing/thewell.wrl.gz#TheWell"
 
 DEF TheWorldInfo WorldInfo {
   title "The zoo island"
@@ -215,19 +222,19 @@ DEF TheGeosphere Transform {
 DEF ThePicnicPlace Group {
   children [
     TheSwingSet {
-      translation 108 4.2 16
+      translation 50 -8 5
 	rotation 0 1 0 0
-	scale 0.03 0.03 0.03
+	scale 0.2 0.2 0.2
     }
     TheTeeterTotter {
-      translation 118 5.38 14
+      translation 25 3 35
 	rotation 0 1 0 0
-	scale 0.03 0.03 0.03
+	scale 0.2 0.2 0.2
     }
     TheTeeterTotter {
-      translation 123 5.38 14
+      translation 75 3 35
 	rotation 0 1 0 0
-	scale 0.03 0.03 0.03
+	scale 0.2 0.2 0.2
     }
     TheWell {
       translation 122 5 -7
@@ -237,3 +244,11 @@ DEF ThePicnicPlace Group {
 ]
 }
 
+DEF MerryGoRound Transform {
+translation 0 1 0
+children [
+ Inline {
+  url "merry-go-round.wrl"
+  }
+]
+}
