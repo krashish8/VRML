@@ -227,19 +227,19 @@ DEF ThePicnicPlace Group {
 	scale 0.2 0.2 0.2
     }
     TheTeeterTotter {
-      translation 25 3 35
+      translation 40 3 35
 	rotation 0 1 0 0
 	scale 0.2 0.2 0.2
     }
     TheTeeterTotter {
-      translation 75 3 35
+      translation 60 3 35
 	rotation 0 1 0 0
 	scale 0.2 0.2 0.2
     }
     TheWell {
-      translation 122 5 -7
+      translation 30 0 -20
 	rotation 0 1 0 0
-      scale 1 1 1
+      scale 3 3 3
     }
 ]
 }
@@ -249,6 +249,17 @@ translation 0 1 0
 children [
  Inline {
   url "merry-go-round.wrl"
+  }
+]
+}
+
+
+DEF Spiral Transform {
+translation 10 1 50
+scale 0.5 0.5 0.5
+children [
+ Inline {
+  url "spiral.wrl"
   }
 ]
 }
