@@ -120,6 +120,7 @@ creaseAngle 0.1
 ]
 }
 DEF treetop Transform {
+scale 0.5 0.5 0.5
 children [
 Shape {
 appearance Appearance {

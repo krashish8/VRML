@@ -134,11 +134,11 @@ Group {
                   Transform {
                     children [
                         Transform {
-                          translation -2 -1.5 0
+                          translation -2 -2.5 0
                           children [
                               DEF BELLBeam Shape {
                                 geometry Box {
-                                  size 0.4 4 0.4
+                                  size 0.4 6 0.4
                                 }
                                 appearance DEF WoodApp Appearance {
                                   material Material {
@@ -152,7 +152,7 @@ Group {
                           ]
                         }
                         Transform {
-                          translation 2 -1.5 0
+                          translation 2 -2.5 0
                           children [
                               USE BELLBeam
                           ]

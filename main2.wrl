@@ -10,7 +10,7 @@ Background {
 
 #Set ViewPoint
 Viewpoint { 
-   position  0 0 0
+   position  0 0 100
 }
 
 NavigationInfo {
@@ -32,7 +32,7 @@ Shape {
     }
 }
 
-#Primary Ground
+#Secondary Ground
 Transform{
    translation 0 -5.2 0
    children[
@@ -58,7 +58,7 @@ Transform{
    children[
       Shape {
          geometry Box {
-           size 200 10 200
+           size 210 10 210
          }
          appearance Appearance {
             texture ImageTexture {
@@ -73,7 +73,17 @@ Transform{
 
 
 DEF MerryGoRound Transform {
-  translation -30 1 -90
+  translation -10 1 20
+  scale 1 1 1
+  children [
+   Inline {
+    url "merry-go-round.wrl"
+    }
+  ]
+}
+
+DEF MerryGoRound Transform {
+  translation 30 1 80
   scale 1 1 1
   children [
    Inline {
@@ -93,12 +103,32 @@ children [
 }
 
 
-DEF Tree Transform {
-translation 50 0 -50
+DEF tree-1 Transform {
+translation -50 0 -20
 scale 1 1 1
 children [
  Inline {
-  url "tree1.wrl"
+  url "playground/tree-1/tree1.wrl"
+  }
+]
+}
+
+DEF tree-1 Transform {
+translation 50 0 20
+scale 1 1 1
+children [
+ Inline {
+  url "playground/tree-1/tree1.wrl"
+  }
+]
+}
+
+DEF tree-2 Transform {
+translation 70 15 50
+scale 5 5 5
+children [
+ Inline {
+  url "playground/tree-2/tree2.wrl"
   }
 ]
 }
@@ -140,6 +170,190 @@ children [
 ]
 }
 
+DEF Spiral Transform {
+translation -30 0 50
+scale 1 1 1
+children [
+ Inline {
+  url "spiral.wrl"
+  }
+]
+}
+
+
+
+DEF Fence Transform {
+translation 0 9 0
+scale 12 12 12
+children [
+ Inline {
+  url "Fence.wrl"
+  }
+]
+}
+
+DEF Swing_boy Transform {
+translation -90 3 0
+scale 4 4 4
+rotation 0 1 0 1.57
+children [
+ Inline {
+  url "playground/Swing/Swing.wrl"
+  }
+]
+}
+
+
+DEF Swing_boy Transform {
+translation -90 3 80
+scale 4 4 4
+rotation 0 1 0 1.57
+children [
+ Inline {
+  url "playground/Swing/Swing.wrl"
+  }
+]
+}
+
+
+DEF SeeSaw_boy Transform {
+translation -90 3 40
+scale 4 4 4
+rotation 0 1 0 1.57
+children [
+ Inline {
+  url "playground/SeeSaw/SeeSaw.wrl"
+  }
+]
+}
+
+DEF SeeSaw_boy Transform {
+translation 30 3 -60
+scale 4 4 4
+rotation 0 1 0 0
+children [
+ Inline {
+  url "playground/SeeSaw/SeeSaw.wrl"
+  }
+]
+}
+
+
+DEF Slides Transform {
+translation 70 0 -60
+scale 4 4 4
+rotation 0 1 0 0
+children [
+ Inline {
+  url "playground/Slides/Slides.wrl"
+  }
+]
+}
+
+DEF Slides Transform {
+translation -50 0 70
+scale 4 4 4
+rotation 0 1 0 4.71
+children [
+ Inline {
+  url "playground/Slides/Slides.wrl"
+  }
+]
+}
+
+
+DEF Bell Transform {
+translation 0 38 105
+scale 7.1 6.9 6.9
+rotation 0 1 0 0
+children [
+ Inline {
+  url "playground/Bell/Bell.wrl"
+  }
+]
+}
+
+
+DEF Tulip Transform{
+
+translation -48 0 -20
+
+children[
+
+DEF Tulip1 Transform {
+translation 0.1 2 0
+scale 2 2 2
+rotation 0 1 0 0
+children [
+ Inline {
+  url "playground/TulipCluster/TulipCluster1.wrl"
+  }
+]
+}
+
+DEF Tulip2 Transform {
+translation  0.2 2 0
+scale 2 2 2
+rotation 0 1 0 0
+children [
+ Inline {
+  url "playground/TulipCluster/TulipCluster2.wrl"
+  }
+]
+}
+
+DEF Tulip3 Transform {
+translation 0.3 2 0
+scale 2 2 2
+rotation 0 1 0 0
+children [
+ Inline {
+  url "playground/TulipCluster/TulipCluster3.wrl"
+  }
+]
+}
+
+DEF Tulip4 Transform {
+translation 0.4 2 0
+scale 2 2 2
+rotation 0 1 0 0
+children [
+ Inline {
+  url "playground/TulipCluster/TulipCluster4.wrl"
+  }
+]
+}
+
+DEF Tulip5 Transform {
+translation 0.5 2 0
+scale 2 2 2
+rotation 0 1 0 0
+children [
+ Inline {
+  url "playground/TulipCluster/TulipCluster5.wrl"
+  }
+]
+}
+  
+]
+
+
+}
+
+
+DEF Hut Transform {
+translation -20 7.5 -60
+scale 5 5 5
+rotation 0 1 0 1.57
+children [
+ Inline {
+  url "playground/Hut/Hut.wrl"
+  }
+]
+}
+
+
+
 
 
 EXTERNPROTO TheSwingSet [
@@ -148,6 +362,13 @@ EXTERNPROTO TheSwingSet [
  exposedField SFVec3f scale
 ]
 "swing/theswingset.wrl.gz#TheSwingSet"
+
+EXTERNPROTO TheTeeterTotter [
+ field SFVec3f translation
+ exposedField SFRotation rotation
+ exposedField SFVec3f scale
+]
+"swing/theteetertotter.wrl.gz#TheTeeterTotter"
 
 EXTERNPROTO TheWell [
  field SFVec3f translation
@@ -160,9 +381,19 @@ EXTERNPROTO TheWell [
 DEF ThePicnicPlace Group {
   children [
     TheSwingSet {
-      translation 20 -5 -50
-  rotation 0 1 0 0
+      translation 60 -5 -10
+  rotation 0 1 0 1.57
   scale 0.1 0.1 0.1
+    }
+    TheTeeterTotter {
+      translation 40 3 35
+  rotation 0 1 0 0
+  scale 0.2 0.2 0.2
+    }
+    TheTeeterTotter {
+      translation 60 3 35
+  rotation 0 1 0 3.14
+  scale 0.2 0.2 0.2
     }
     TheWell {
       translation 20 0 0
@@ -171,5 +402,16 @@ DEF ThePicnicPlace Group {
     }
 ]
 }
+
+Transform{
+  
+  translation -10 0 10
+
+  children[
+    USE ThePicnicPlace
+  ]
+
+}
+
 
 
