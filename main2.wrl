@@ -32,6 +32,24 @@ Shape {
     }
 }
 
+#Primary Ground
+Transform{
+   translation 0 -5.2 0
+   children[
+      Shape {
+         geometry Box {
+           size 20000 10 20000
+         }
+         appearance Appearance {
+            texture ImageTexture {
+               url "swing/thesurface.jpg"
+               repeatS FALSE
+               repeatT FALSE
+            }
+         }
+      }
+   ]
+}
 
 
 #Primary Ground
@@ -40,7 +58,7 @@ Transform{
    children[
       Shape {
          geometry Box {
-           size 20000 10 20000
+           size 200 10 200
          }
          appearance Appearance {
             texture ImageTexture {
