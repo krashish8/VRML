@@ -1,0 +1,23 @@
+#VRML V2.0 utf8 
+
+DEF timer TimeSensor { 
+      cycleInterval 1
+      loop TRUE 
+}
+
+DEF pi PositionInterpolator { 
+               key [ 0 0.1 ] 
+               keyValue [-10 1 0, 10 1 0] 
+} 
+
+DEF tr Transform { 
+     translation 0 1 0 
+     children 
+          Shape { appearance Appearance { material Material { } 
+           		texture ImageTexture { url "cone.jpg"}}
+              geometry Sphere {} 
+          } 
+} 
+
+ROUTE timer.fraction_changed TO pi.set_fraction 
+ROUTE pi.value_changed TO tr.set_translation 

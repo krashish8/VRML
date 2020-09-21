@@ -13,6 +13,12 @@ Viewpoint {
    position  0 0 0
 }
 
+NavigationInfo {
+  avatarSize [0.25, 3.3, 0.75]
+  speed 20.0
+  type "WALK"
+}
+
 #Increase frame size
 Shape {
     geometry Box {
@@ -49,8 +55,8 @@ Transform{
 
 
 DEF MerryGoRound Transform {
-  translation -2000 100 -5000
-  scale 100 100 100
+  translation -30 1 -90
+  scale 1 1 1
   children [
    Inline {
     url "merry-go-round.wrl"
@@ -58,10 +64,20 @@ DEF MerryGoRound Transform {
   ]
 }
 
+DEF Slide Transform {
+translation -50 2 -50
+scale 1 2 1
+children [
+ Inline {
+  url "slide.wrl"
+  }
+]
+}
+
 
 DEF Tree Transform {
-translation 5000 0 -5000
-scale 100 100 100
+translation 50 0 -50
+scale 1 1 1
 children [
  Inline {
   url "tree1.wrl"
@@ -71,8 +87,8 @@ children [
 
 
 DEF Plane Transform {
-translation 2500 1000 -5000
-scale 20 20 20
+translation 3500 1500 -5000
+scale 15 15 15
 children [
  Inline {
   url "random-models/plane.wrl"
@@ -81,9 +97,24 @@ children [
 }
 
 
+DEF timer TimeSensor { 
+      cycleInterval 20
+      loop TRUE 
+}
+
+DEF pi PositionInterpolator { 
+               key [ 0 10 ] 
+               keyValue [3500 1500 -5000, -102500 1500 -5000] 
+} 
+
+
+ROUTE timer.fraction_changed TO pi.set_fraction 
+ROUTE pi.value_changed TO Plane.set_translation 
+
+
 DEF Spiral Transform {
-translation 0 100 -5000
-scale 100 100 100
+translation 0 0 -50
+scale 1 1 1
 children [
  Inline {
   url "spiral.wrl"
@@ -111,25 +142,16 @@ EXTERNPROTO TheWell [
 DEF ThePicnicPlace Group {
   children [
     TheSwingSet {
-      translation 2000 -500 -5000
+      translation 20 -5 -50
   rotation 0 1 0 0
-  scale 10 10 10
+  scale 0.1 0.1 0.1
     }
     TheWell {
-      translation 5000 0 0
+      translation 20 0 0
   rotation 0 1 0 0
-  scale 1000 1000 1000
+  scale 2.5 2.5 2.5
     }
 ]
 }
 
 
-DEF Spiral Transform {
-translation 0 500 5000
-scale 300 300 300
-children [
- Inline {
-  url "slide.wrl"
-  }
-]
-}

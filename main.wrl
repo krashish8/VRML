@@ -1,5 +1,20 @@
 #VRML V2.0 utf8 
 
+DEF Cube Transform {
+        translation 0 0 -5
+        children [
+            DEF CubeTouch TouchSensor { }
+            DEF CubeTimer TimeSensor { cycleInterval 2.0 }
+            DEF CubePositionInterp PositionInterpolator {
+                key [0, .5, 1]
+                keyValue [0 0 -5, 5 0 -5, 5 5 -5]
+            }
+            Shape { geometry Box { } }
+        ]
+    }
+
+
+    
 NavigationInfo {
   avatarSize [0.25, 3.6, 0.75]
   speed 20.0
@@ -32,13 +47,13 @@ DEF TheWorldInfo WorldInfo {
   title "The zoo island"
   info "
 
-		Author: Silvere Martin-Michiellot
+    Author: Silvere Martin-Michiellot
 
-		Date: March 1998
+    Date: March 1998
 
-		Copyright:	Free of all Copyrights
+    Copyright:  Free of all Copyrights
 
-				Based on the objects given in the Tryout version of VRCreator 2.0 by Platinium"
+        Based on the objects given in the Tryout version of VRCreator 2.0 by Platinium"
 }
 
 DEF TheWalkNavigationInfo NavigationInfo {
@@ -56,13 +71,13 @@ DEF TheFlyNavigationInfo NavigationInfo {
 }
 
 Transform {
-	 translation 0 2 0
-	 children DEF FlatWorldProxy ProximitySensor {size 1000 20 1000}
+   translation 0 2 0
+   children DEF FlatWorldProxy ProximitySensor {size 1000 20 1000}
 }
 
 Transform {
-	 translation 0 0 0
-	 children DEF UniverseProxy ProximitySensor {size 1000 1000 1000}
+   translation 0 0 0
+   children DEF UniverseProxy ProximitySensor {size 1000 1000 1000}
 }
 
 DEF TheBackground Background {
@@ -118,7 +133,7 @@ DEF TheGeosphere Transform {
             xSpacing 1
             zDimension 20
             zSpacing 1
-		creaseAngle 1.58
+    creaseAngle 1.58
             height [
               -1, -1, -1, -1, -1,
               -1, -1, -1, -1, -1,
@@ -209,9 +224,9 @@ DEF TheGeosphere Transform {
               ambientIntensity 0
               shininess 0.1
             }
-		texture ImageTexture {
-		  url "swing/thesurface.jpg"
-		}
+    texture ImageTexture {
+      url "swing/thesurface.jpg"
+    }
           }
         }
       ]
@@ -223,22 +238,22 @@ DEF ThePicnicPlace Group {
   children [
     TheSwingSet {
       translation 50 -8 5
-	rotation 0 1 0 0
-	scale 0.2 0.2 0.2
+  rotation 0 1 0 0
+  scale 0.2 0.2 0.2
     }
     TheTeeterTotter {
       translation 40 3 35
-	rotation 0 1 0 0
-	scale 0.2 0.2 0.2
+  rotation 0 1 0 0
+  scale 0.2 0.2 0.2
     }
     TheTeeterTotter {
       translation 60 3 35
-	rotation 0 1 0 0
-	scale 0.2 0.2 0.2
+  rotation 0 1 0 0
+  scale 0.2 0.2 0.2
     }
     TheWell {
       translation 30 0 -20
-	rotation 0 1 0 0
+  rotation 0 1 0 0
       scale 3 3 3
     }
 ]
