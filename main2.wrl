@@ -415,6 +415,15 @@ DEF ThePicnicPlace Group {
   rotation 0 1 0 0
   scale 2.5 2.5 2.5
     }
+    Transform {
+    translation 20 6.6 0
+    scale 0.5 0.5 0.5
+    children [
+     Inline {
+      url "playground/bartwist.wrl"
+      }
+    ]
+    }
 ]
 }
 
@@ -430,3 +439,13 @@ Transform{
 
 
 
+DEF SandPit Transform {
+translation 25 0 -40
+scale 5 5 5
+rotation 0 1 0 1.57
+children [
+ Inline {
+  url "playground/SandPit/SandPit.wrl"
+  }
+]
+}

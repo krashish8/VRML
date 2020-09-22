@@ -1,0 +1,60 @@
+#VRML V2.0 utf8
+Viewpoint { position 0.0 2.0 11.0 }
+NavigationInfo { type [ "EXAMINE", "ANY" ] }
+DEF Bartwist Transform {
+children [
+Shape {
+	appearance Appearance {
+		material Material {
+			diffuseColor 1.0 0.5 0.0
+		}
+	}
+	geometry Extrusion {
+		creaseAngle 0.785
+		crossSection [
+		# Square
+			-1.0  1.0,   1.0  1.0,
+			 1.0 -1.0,  -1.0 -1.0,
+			-1.0  1.0
+		]
+		spine [
+		# Straight-line
+			0.0 0.0 0.0,
+			0.0 0.5 0.0,
+			0.0 1.0 0.0,
+			0.0 1.5 0.0,
+			0.0 2.0 0.0,
+			0.0 2.5 0.0,
+			0.0 3.0 0.0,
+			0.0 3.5 0.0,
+			0.0 4.0 0.0
+		]
+		orientation [
+			0.0 1.0 0.0 0.0,
+			0.0 1.0 0.0 0.175,
+			0.0 1.0 0.0 0.349,
+			0.0 1.0 0.0 0.524,
+			0.0 1.0 0.0 0.698,
+			0.0 1.0 0.0 0.873,
+			0.0 1.0 0.0 1.047,
+			0.0 1.0 0.0 1.222,
+			0.0 1.0 0.0 1.396,
+		]
+	}
+}
+]}
+
+DEF Timer TimeSensor {
+	cycleInterval 2.0
+	loop TRUE
+	startTime 0.0
+	stopTime -1.0
+}
+
+DEF ORIENTATION OrientationInterpolator {
+key [0 0.5 1]
+keyValue [0 1 0  0, 0 1 0  3.14, 0 1 0 6.28] 
+}
+
+ROUTE Timer.fraction_changed	TO ORIENTATION.set_fraction
+ROUTE ORIENTATION.value_changed	TO Bartwist.set_rotation
