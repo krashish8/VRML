@@ -91,10 +91,10 @@ Shape {
             url "mud01.jpg"
         }
         textureTransform TextureTransform {
-            scale 10.0 10.0
+            scale 7.5 7.5
         }
     }
-    geometry Box { size 20.0 0.01 20.0 }
+    geometry Box { size 7.5 0.01 7.5 }
 }
 
 

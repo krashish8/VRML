@@ -19,6 +19,11 @@ NavigationInfo {
   type "WALK"
 }
 
+DEF TheSun DirectionalLight {
+  direction 0 -1 0
+  ambientIntensity 1
+}
+
 #Increase frame size
 Shape {
     geometry Box {
@@ -352,6 +357,16 @@ children [
 ]
 }
 
+
+DEF bounce Transform {
+translation -50 0 15
+scale 3 3 3
+children [
+ Inline {
+  url "playground/Bounce/bounce.wrl"
+  }
+]
+}
 
 
 
