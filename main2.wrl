@@ -8,10 +8,6 @@ Background {
 	groundColor [ 0 0 0, 0.2 0.5 0, 0.3 0.4 0, 0.8 0.6 0.4 ]
 }
 
-#Set ViewPoint
-Viewpoint { 
-   position  0 0 200
-   orientation 1 0 0 0.2
 DEF Camera_Rot Transform {
   children [
     DEF CameraTranslation Transform {
