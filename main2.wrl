@@ -8,7 +8,7 @@ Background {
 	groundColor [ 0 0 0, 0.2 0.5 0, 0.3 0.4 0, 0.8 0.6 0.4 ]
 }
 
-Transform{
+DEF StartMovie Transform{
   translation 15 15 -30
   children[
     Shape {
@@ -25,6 +25,27 @@ Transform{
        }
     }
     DEF PlayTouchSensor TouchSensor {
+    }
+  ]
+}
+
+DEF StopMovie Transform{
+  translation 15 15 370
+  children[
+    Shape {
+       geometry Box {
+         size 10 5 0
+         solid TRUE
+       }
+       appearance Appearance {
+          texture ImageTexture {
+             url "playground/stop.jpg"
+             repeatS FALSE
+             repeatT FALSE
+          }
+       }
+    }
+    DEF StopTouchSensor TouchSensor {
     }
   ]
 }
@@ -48,6 +69,7 @@ DEF Camera_Rot Transform {
      key [0.000 0.142 0.232 0.286 0.399 0.500 0.534 0.637 0.683 0.778 0.858 1.000] 
      keyValue [0 5 200, 0 5 98.69, 64.31 5 92.01, 62.78 5 53.31, 77.83 5 -25.86, 
               5.87 5 -25.81, 10.97 5 -1.94, -62.53 5 -4.18, -67.68 5 28.16, -0.82 5 41.30, -2.35 5 98.69, 0 5 200] 
+
 } 
 
 DEF ViewOrientation OrientationInterpolator {
@@ -62,11 +84,30 @@ DEF NormalTimer TimeSensor {
     startTime -1.0
 }
 
+ROUTE StopTouchSensor.touchTime TO NormalTimer.stopTime
+
 ROUTE PlayTouchSensor.touchTime TO NormalTimer.startTime
 ROUTE NormalTimer.fraction_changed TO ViewPosition.set_fraction 
 ROUTE NormalTimer.fraction_changed TO ViewOrientation.set_fraction 
 ROUTE ViewPosition.value_changed TO CameraTranslation.set_translation
 ROUTE ViewOrientation.value_changed TO CameraTranslation.set_rotation
+
+
+DEF StartMoviePosition PositionInterpolator { 
+     key [0 1] 
+     keyValue [15 15 -30, 15 15 -330] 
+}
+
+DEF StopMoviePosition PositionInterpolator { 
+     key [0 1] 
+     keyValue [15 15 470, 15 15 170] 
+}
+
+ROUTE NormalTimer.fraction_changed TO StartMoviePosition.set_fraction 
+ROUTE StartMoviePosition.value_changed TO StartMovie.set_translation
+ROUTE NormalTimer.fraction_changed TO StopMoviePosition.set_fraction 
+ROUTE StopMoviePosition.value_changed TO StopMovie.set_translation
+
 
 NavigationInfo {
   avatarSize [0.25, 3.3, 0.75]
