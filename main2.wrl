@@ -12,7 +12,41 @@ Background {
 Viewpoint { 
    position  0 0 200
    orientation 1 0 0 0.2
+DEF Camera_Rot Transform {
+  children [
+    DEF CameraTranslation Transform {
+      children [
+        DEF Camera_001 Viewpoint {
+          description "Camera.001" 
+          position 0 5 200
+          orientation 1 0 0 0.2
+        }
+      ]
+    }
+  ]
 }
+
+
+ DEF ViewPosition PositionInterpolator { 
+     key [ 0 0.4 0.5 0.8 1 ] 
+     keyValue [0 0 10, -5 40 0, 10 55 0 , 5 40 0 , 10 2 0] 
+} 
+
+DEF ViewOrientation OrientationInterpolator {
+  key [0 0.1 0.2 1]
+  keyValue [1 0 0 1, 1 0 0 0, 1 0 0 1, 1 0 0 0]
+}
+
+DEF NormalTimer TimeSensor { 
+    cycleInterval 50
+    loop TRUE 
+}
+
+
+#ROUTE NormalTimer.fraction_changed TO ViewPosition.set_fraction 
+#ROUTE NormalTimer.fraction_changed TO ViewOrientation.set_fraction 
+ROUTE ViewPosition.value_changed TO CameraTranslation.set_translation
+ROUTE ViewOrientation.value_changed TO CameraTranslation.set_rotation
 
 NavigationInfo {
   avatarSize [0.25, 3.3, 0.75]
@@ -235,7 +269,7 @@ children [
 
 
 DEF SeeSaw_boy Transform {
-translation -90 3 40
+translation -90 2 40
 scale 4 4 4
 rotation 0 1 0 1.57
 children [
@@ -246,7 +280,7 @@ children [
 }
 
 DEF SeeSaw_boy Transform {
-translation 30 3 -60
+translation 30 2 -60
 scale 4 4 4
 rotation 0 1 0 0
 children [

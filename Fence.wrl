@@ -346,6 +346,10 @@ Transform {
       }
   ]
 }
+DEF GateOpenSensor ProximitySensor { 
+  center 0 0.45 9
+  size 11 11 11
+} 
 Transform {
   children [
       Sound {
@@ -373,6 +377,9 @@ Viewpoint {
   orientation 1 0 0 -1.57
   position 0 3 8.75
 }
+
+ROUTE GateOpenSensor.enterTime TO FENCEDoorTimer1.set_startTime
+ROUTE GateOpenSensor.enterTime TO FENCEDoorTimer2.set_startTime
 ROUTE FENCELeftDoorSensor.touchTime TO FENCEDoorTimer1.set_startTime
 ROUTE FENCEDoorTimer1.fraction_changed TO FENCELeftDoorInterpolator.set_fraction
 ROUTE FENCELeftDoorInterpolator.value_changed TO FENCELeftDoorTX.set_rotation
