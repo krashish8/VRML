@@ -47,7 +47,7 @@ Transform{
          }
          appearance Appearance {
             texture ImageTexture {
-               url "swing/thesurface.jpg"
+               url "playground/grass1.jpg"
                repeatS FALSE
                repeatT FALSE
             }
@@ -67,7 +67,7 @@ Transform{
          }
          appearance Appearance {
             texture ImageTexture {
-               url "swing/thesurface.jpg"
+               url "playground/grass1.jpg"
                repeatS FALSE
                repeatT FALSE
             }
@@ -117,6 +117,18 @@ children [
   }
 ]
 }
+
+
+DEF tree-1 Transform {
+translation 80 0 90
+scale 1 1 1
+children [
+ Inline {
+  url "playground/tree-1/tree1.wrl"
+  }
+]
+}
+
 
 DEF tree-1 Transform {
 translation 50 0 20
@@ -278,6 +290,45 @@ children [
 ]
 }
 
+DEF banner Transform{
+      translation 0 48 105
+      children[
+        Shape {
+           geometry Box {
+             size 30 15 1
+             solid FALSE
+           }
+           appearance Appearance {
+              texture ImageTexture {
+                 url "playground/banner.jpg"
+                 repeatS FALSE
+                 repeatT FALSE
+              }
+           }
+        }
+      ]
+    }
+
+DEF bannerbeam Transform{
+      translation 0 48 105
+      children[
+        Shape {
+           geometry Box {
+             size 31.3 17 0.9
+             solid FALSE
+           }
+           appearance Appearance {
+              texture ImageTexture {
+                 url "playground/wood.jpg"
+                 repeatS FALSE
+                 repeatT FALSE
+              }
+           }
+        }
+      ]
+    }
+
+
 
 DEF Tulip Transform{
 
@@ -376,21 +427,21 @@ EXTERNPROTO TheSwingSet [
  exposedField SFRotation rotation
  exposedField SFVec3f scale
 ]
-"swing/theswingset.wrl.gz#TheSwingSet"
+"playground/PicnicGroup/theswingset.wrl.gz#TheSwingSet"
 
 EXTERNPROTO TheTeeterTotter [
  field SFVec3f translation
  exposedField SFRotation rotation
  exposedField SFVec3f scale
 ]
-"swing/theteetertotter.wrl.gz#TheTeeterTotter"
+"playground/PicnicGroup/theteetertotter.wrl.gz#TheTeeterTotter"
 
 EXTERNPROTO TheWell [
  field SFVec3f translation
  exposedField SFRotation rotation
  exposedField SFVec3f scale
 ]
-"swing/thewell.wrl.gz#TheWell"
+"playground/PicnicGroup/thewell.wrl.gz#TheWell"
 
 
 DEF ThePicnicPlace Group {
@@ -411,9 +462,44 @@ DEF ThePicnicPlace Group {
   scale 0.2 0.2 0.2
     }
     TheWell {
-      translation 20 0 0
+      translation 20 -0.1 0
   rotation 0 1 0 0
   scale 2.5 2.5 2.5
+    }
+    Transform{
+      translation 20 0.9 0
+      children[
+        Shape {
+           geometry Box {
+             size 3.2 1.9 3.2
+             solid FALSE
+           }
+           appearance Appearance {
+              texture ImageTexture {
+                 url "playground/well.jpg"
+                 repeatS FALSE
+                 repeatT FALSE
+              }
+           }
+        }
+      ]
+    }
+    Transform{
+      translation 20 0.9 0
+      children[
+        Shape {
+           geometry Box {
+             size 3 2 3
+             solid FALSE
+           }
+           appearance Appearance {
+              material Material { 
+                diffuseColor 0.5 0.5 0.5
+
+               }
+           }
+        }
+      ]
     }
     Transform {
     translation 20 6.6 0
