@@ -290,6 +290,45 @@ children [
 ]
 }
 
+DEF banner Transform{
+      translation 0 48 105
+      children[
+        Shape {
+           geometry Box {
+             size 30 15 1
+             solid FALSE
+           }
+           appearance Appearance {
+              texture ImageTexture {
+                 url "playground/banner.jpg"
+                 repeatS FALSE
+                 repeatT FALSE
+              }
+           }
+        }
+      ]
+    }
+
+DEF bannerbeam Transform{
+      translation 0 48 105
+      children[
+        Shape {
+           geometry Box {
+             size 31.3 17 0.9
+             solid FALSE
+           }
+           appearance Appearance {
+              texture ImageTexture {
+                 url "playground/wood.jpg"
+                 repeatS FALSE
+                 repeatT FALSE
+              }
+           }
+        }
+      ]
+    }
+
+
 
 DEF Tulip Transform{
 
@@ -428,11 +467,12 @@ DEF ThePicnicPlace Group {
   scale 2.5 2.5 2.5
     }
     Transform{
-      translation 18.5 0.9 0
+      translation 20 0.9 0
       children[
         Shape {
            geometry Box {
-             size 0.1 2 3
+             size 3.2 1.9 3.2
+             solid FALSE
            }
            appearance Appearance {
               texture ImageTexture {
@@ -440,6 +480,23 @@ DEF ThePicnicPlace Group {
                  repeatS FALSE
                  repeatT FALSE
               }
+           }
+        }
+      ]
+    }
+    Transform{
+      translation 20 0.9 0
+      children[
+        Shape {
+           geometry Box {
+             size 3 2 3
+             solid FALSE
+           }
+           appearance Appearance {
+              material Material { 
+                diffuseColor 0.5 0.5 0.5
+
+               }
            }
         }
       ]
