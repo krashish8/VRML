@@ -449,3 +449,37 @@ children [
   }
 ]
 }
+
+DEF HotAirBalloon Transform{
+
+translation 15 8 40
+
+children[
+
+
+  DEF Balloon Transform {
+  scale 5 5 5
+  rotation 0 1 0 1.57
+  children [
+   Inline {
+    url "playground/Balloon/Balloon.wrl"
+    }
+  ]
+  },
+
+  DEF Fence Transform {
+  translation 0 -6 0
+  scale 0.5 2 0.5
+  children [
+   Inline {
+    url "Fence.wrl"
+    }
+  ]
+  }
+
+
+]
+
+
+}
+

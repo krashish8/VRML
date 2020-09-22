@@ -305,7 +305,7 @@ Transform {
                         Shape {
                           appearance Appearance {
                             texture ImageTexture {
-                              url [ "playground/grass1.jpg" ]
+                              url [ "playground/grass2.jpg" ]
                             }
                             textureTransform TextureTransform {
                               scale 120 120
