@@ -19,6 +19,11 @@ NavigationInfo {
   type "WALK"
 }
 
+DEF TheSun DirectionalLight {
+  direction 0 -1 0
+  ambientIntensity 1
+}
+
 #Increase frame size
 Shape {
     geometry Box {
@@ -353,6 +358,16 @@ children [
 }
 
 
+DEF bounce Transform {
+translation -50 0 15
+scale 3 3 3
+children [
+ Inline {
+  url "playground/Bounce/bounce.wrl"
+  }
+]
+}
+
 
 
 
@@ -400,6 +415,15 @@ DEF ThePicnicPlace Group {
   rotation 0 1 0 0
   scale 2.5 2.5 2.5
     }
+    Transform {
+    translation 20 6.6 0
+    scale 0.5 0.5 0.5
+    children [
+     Inline {
+      url "playground/bartwist.wrl"
+      }
+    ]
+    }
 ]
 }
 
@@ -415,3 +439,13 @@ Transform{
 
 
 
+DEF SandPit Transform {
+translation 25 0 -40
+scale 5 5 5
+rotation 0 1 0 1.57
+children [
+ Inline {
+  url "playground/SandPit/SandPit.wrl"
+  }
+]
+}
