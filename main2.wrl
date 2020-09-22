@@ -10,7 +10,8 @@ Background {
 
 #Set ViewPoint
 Viewpoint { 
-   position  0 0 100
+   position  0 0 200
+   orientation 1 0 0 0.2
 }
 
 NavigationInfo {
@@ -210,8 +211,8 @@ children [
 }
 
 DEF Swing_boy Transform {
-translation -90 3 0
-scale 4 4 4
+translation -90 5 0
+scale 6 6 6
 rotation 0 1 0 1.57
 children [
  Inline {
@@ -222,8 +223,8 @@ children [
 
 
 DEF Swing_boy Transform {
-translation -90 3 80
-scale 4 4 4
+translation -90 5 80
+scale 6 6 6
 rotation 0 1 0 1.57
 children [
  Inline {
@@ -447,9 +448,9 @@ EXTERNPROTO TheWell [
 DEF ThePicnicPlace Group {
   children [
     TheSwingSet {
-      translation 60 -5 -10
+      translation 60 -7 -10
   rotation 0 1 0 1.57
-  scale 0.1 0.1 0.1
+  scale 0.15 0.15 0.15
     }
     TheTeeterTotter {
       translation 40 3 35
@@ -464,14 +465,14 @@ DEF ThePicnicPlace Group {
     TheWell {
       translation 20 -0.1 0
   rotation 0 1 0 0
-  scale 2.5 2.5 2.5
+  scale 3.5 3.5 3.5
     }
     Transform{
-      translation 20 0.9 0
+      translation 20 1.2 0
       children[
         Shape {
            geometry Box {
-             size 3.2 1.9 3.2
+             size 4.5 2.65 4.5
              solid FALSE
            }
            appearance Appearance {

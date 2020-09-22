@@ -44,7 +44,7 @@ Group {
                         }
                         DEF BellRingSensor ProximitySensor { 
                           center 0 0 0 
-                          size 5 5 5
+                          size 1 40 40
                         } 
                     ]
                   }
@@ -52,7 +52,7 @@ Group {
                     cycleInterval 4
                   }
                   DEF BELLTimeS1 TimeSensor {
-                    cycleInterval 2
+                    cycleInterval 2.
                   }
  ### Warning:  no ROUTE found for TimeSensor output
                   DEF BELLTouchS TouchSensor {
@@ -169,6 +169,7 @@ Group {
         }
       }
   ]
+ROUTE BellRingSensor.enterTime TO BELLClip.set_startTime
 ROUTE BellRingSensor.enterTime TO BELLTimeS.set_startTime
 ROUTE BELLTouchS.touchTime TO BELLTimeS.set_startTime
 ROUTE BELLTimeS.fraction_changed TO BELLInterpolator.set_fraction
