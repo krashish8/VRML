@@ -22,7 +22,7 @@ NavigationInfo {
 #Increase frame size
 Shape {
     geometry Box {
-    size 20000 10000 20000
+    size 200000000 100000000 20000000
   }
   appearance Appearance {
            material Material { 
