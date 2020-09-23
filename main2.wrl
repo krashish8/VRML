@@ -79,7 +79,7 @@ DEF ViewOrientation OrientationInterpolator {
 }
 
 DEF NormalTimer TimeSensor { 
-    cycleInterval 60
+    cycleInterval 61
     loop TRUE 
     startTime -1.0
 }
@@ -92,6 +92,18 @@ ROUTE NormalTimer.fraction_changed TO ViewOrientation.set_fraction
 ROUTE ViewPosition.value_changed TO CameraTranslation.set_translation
 ROUTE ViewOrientation.value_changed TO CameraTranslation.set_rotation
 
+DEF MovieSound Sound {
+  direction 1 1 1
+  maxBack 400
+  maxFront 400
+  minBack 300
+  minFront 300
+  source DEF MovieSoundClip AudioClip {
+    url [ "playground/movie_music.ogg" ]
+  }
+}
+
+ROUTE PlayTouchSensor.touchTime TO MovieSoundClip.set_startTime
 
 DEF StartMoviePosition PositionInterpolator { 
      key [0 1] 
