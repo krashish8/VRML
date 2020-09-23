@@ -71,7 +71,7 @@ DEF StartMovie Transform{
     Shape {
       geometry Box {
         size 10 5 0
-        solid TRUE
+        #solid TRUE
       }
       appearance Appearance {
         texture ImageTexture {
@@ -92,7 +92,7 @@ DEF StopMovie Transform{
     Shape {
       geometry Box {
         size 10 5 0
-        solid TRUE
+        #solid TRUE
       }
       appearance Appearance {
         texture ImageTexture {
@@ -430,7 +430,7 @@ DEF Banner Transform{
     Shape {
       geometry Box {
         size 30 15 1
-        solid FALSE
+        #solid FALSE
       }
       appearance Appearance {
         texture ImageTexture {
@@ -449,7 +449,7 @@ DEF BannerBeam Transform{
     Shape {
       geometry Box {
         size 31.3 17 0.9
-        solid FALSE
+        #solid FALSE
       }
       appearance Appearance {
         texture ImageTexture {
@@ -596,7 +596,7 @@ DEF ThePicnicPlace Group {
         Shape {
           geometry Box {
             size 4.5 2.65 4.5
-            solid FALSE
+            #solid FALSE
           }
           appearance Appearance {
             texture ImageTexture {
@@ -614,7 +614,7 @@ DEF ThePicnicPlace Group {
         Shape {
           geometry Box {
             size 3 2 3
-            solid FALSE
+            #solid FALSE
           }
           appearance Appearance {
             material Material { 
