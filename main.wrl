@@ -11,6 +11,10 @@ NavigationInfo {
   type "WALK"
 }
 
+Collision{
+  collide  TRUE
+}
+
 DEF TheSun DirectionalLight {
   direction 0 -1 0
   ambientIntensity 1
@@ -123,7 +127,7 @@ DEF MovieSound Sound {
   minBack 300
   minFront 300
   source DEF MovieSoundClip AudioClip {
-    url [ "files/sound/movie-music.ogg" ]
+    url [ "files/sound/movie-music.wav" ]
   }
 }
 ROUTE PlayTouchSensor.touchTime TO MovieSoundClip.set_startTime
