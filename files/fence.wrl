@@ -1,0 +1,390 @@
+#VRML V2.0 utf8
+
+NavigationInfo { type [ "EXAMINE" "ANY" ] } ###  Default X3D NavigationInfo
+
+WorldInfo {
+  title "Fence.x3d"
+}
+DEF FENCEBACKTX Transform {
+  translation 0 0 -8.75
+  children [
+      DEF FENCEGP5 Group {
+        children [
+            DEF FENCE1GP Group {
+              children [
+                  Transform {
+                    translation 0 -0.5 0
+                    children [
+                        DEF FENCEbar Shape {
+                          geometry Box {
+                            size 2.5 0.1 0.1
+                          }
+                          appearance DEF FENCEApp Appearance {
+                            material Material {
+                              diffuseColor 0.8 0.5 0
+                            }
+                            texture DEF wood ImageTexture {
+                              url [ "images/wood.jpg" ]
+                            }
+                          }
+                        }
+                    ]
+                  }
+                  Transform {
+                    translation 0 -0.25 0
+                    children [
+                        USE FENCEbar
+                    ]
+                  }
+                  Transform {
+                    children [
+                        USE FENCEbar
+                    ]
+                  }
+                  Transform {
+                    translation 0 0.25 0
+                    children [
+                        USE FENCEbar
+                    ]
+                  }
+                  Transform {
+                    rotation 0 0 1 1.57
+                    translation 1.25 -.20 0
+                    children [
+                        DEF FENCEleg Shape {
+                          geometry Box {
+                            size 1.3 0.15 0.15
+                          }
+                          appearance Appearance {
+                            material Material {
+                              diffuseColor 0.8 0.5 0
+                            }
+                            texture USE wood
+                          }
+                        }
+                    ]
+                  }
+                  Transform {
+                    rotation 0 0 1 1.57
+                    translation -1.25 -0.20 0
+                    children [
+                        USE FENCEleg
+                    ]
+                  }
+              ]
+            }
+            Transform {
+              translation 2.5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation -2.5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation 5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation 7.5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation -5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation -7.5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+        ]
+      }
+  ]
+}
+DEF FENCERIGHTTX Transform {
+  rotation 0 1 0 1.57
+  translation 8.75 0 0
+  children [
+      USE FENCEGP5
+  ]
+}
+DEF FENCELEFTTX Transform {
+  rotation 0 1 0 1.57
+  translation -8.75 0 0
+  children [
+      USE FENCEGP5
+  ]
+}
+DEF FENCEFRONTTX Transform {
+  translation 0 0 8.75
+  children [
+      Group {
+        children [
+            Transform {
+              translation -2.5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation 2.5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation 5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation -5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation -7.5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+            Transform {
+              translation 7.5 0 0
+              children [
+                  USE FENCE1GP
+              ]
+            }
+        ]
+      }
+      DEF FENCERightDoorTX Transform {
+        center 0.6 0 0.05
+        translation 0.575 0 0.025
+        children [
+            DEF FENCERightDoorGP Group {
+              children [
+                  DEF FENCEDoor1 Group {
+                    children [
+                        Transform {
+                          translation 0. -0.5 0
+                          children [
+                              DEF FENCEDoorbarShape Shape {
+                                geometry Box {
+                                  size 1 0.075 0.075
+                                }
+                                appearance USE FENCEApp
+                              }
+                          ]
+                        }
+                        DEF FENCEDOORRIGHTLEGTX Transform {
+                          rotation 0 0 1 1.57
+                          translation 0.55 -.20 0
+                          children [
+                              DEF FENCEDoorlegShape Shape {
+                                geometry Box {
+                                  size 1.2 0.1 0.1
+                                }
+                                appearance USE FENCEApp
+                              }
+                          ]
+                        }
+                        Transform {
+                          translation 0 -0.2 0
+                          children [
+                              USE FENCEDoorbarShape
+                          ]
+                        }
+                        Transform {
+                          translation 0 0.1 0
+                          children [
+                              USE FENCEDoorbarShape
+                          ]
+                        }
+                        Transform {
+                          translation 0 0.35 0
+                          children [
+                              USE FENCEDoorbarShape
+                          ]
+                        }
+                        DEF FENCEDOORLEFTLEGTX Transform {
+                          rotation 0 0 1 1.57
+                          translation -0.5 -.20 0
+                          children [
+                              USE FENCEDoorlegShape
+                          ]
+                        }
+                    ]
+                  }
+                  Group {
+                    children [
+                        Transform {
+                          rotation 0 0 1 0.785
+                          scale 1.2 1 1
+                          translation 0.05 -0.1 -0.05
+                          children [
+                              USE FENCEDoorbarShape
+                          ]
+                        }
+                    ]
+                  }
+                  DEF FENCERightDoorSensor TouchSensor {
+                  }
+              ]
+            }
+        ]
+      }
+      Transform {
+        children [
+            DEF FENCELeftDoorGP Group {
+              children [
+                  DEF FENCELeftDoorTX Transform {
+                    center -0.55 0 0.05
+                    translation -0.625 0 0.025
+                    children [
+                        USE FENCEDoor1
+                        Group {
+                          children [
+                              Transform {
+                                rotation 0 0 1 -0.785
+                                scale 1.2 1 1
+                                translation -0.05 -0.1 -0.05
+                                children [
+                                    USE FENCEDoorbarShape
+                                ]
+                              }
+                          ]
+                        }
+                        DEF FENCELeftDoorSensor TouchSensor {
+                        }
+                    ]
+                  }
+              ]
+            }
+        ]
+      }
+      DEF FENCEDoorTimer1 TimeSensor {
+        cycleInterval 12
+      }
+      DEF FENCEDoorTimer2 TimeSensor {
+        cycleInterval 15
+      }
+      DEF FENCELeftDoorInterpolator OrientationInterpolator {
+        key [ 0 0.25 0.75 1 ]
+        keyValue [ 0 1 0 0 0 1 0 -1.57 0 1 0 -1.57 0 1 0 0 ]
+      }
+      DEF FENCERightDoorInterpolator OrientationInterpolator {
+        key [ 0 0.25 0.75 1 ]
+        keyValue [ 0 1 0 0.0 0 1 0 1.57 0 1 0 1.57 0 1 0 -0 ]
+      }
+  ]
+}
+Transform {
+  children [
+      Transform {
+        children [
+            DEF LAWN Transform {
+              translation 0 -0.8 0
+              children [
+                  Transform {
+                    scale 4 1 4
+                    translation -14 0.01 -14
+                    children [
+                        Shape {
+                          appearance Appearance {
+                            texture ImageTexture {
+                              url [ "images/grass2.jpg" ]
+                            }
+                            textureTransform TextureTransform {
+                              scale 120 120
+                            }
+                          }
+                          geometry ElevationGrid {
+                            creaseAngle 0.785
+                            height [ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]
+                            xDimension 8
+                            xSpacing 1.
+                            zDimension 8
+                            zSpacing 1.
+                          }
+                        }
+                    ]
+                  }
+              ]
+            }
+            DEF FLOORTX Transform {
+              translation 0 -0.876 0
+              children [
+                  DEF FLOOR Shape {
+                    geometry Box {
+                      size 28 0.15 28
+                    }
+                    appearance Appearance {
+                      material Material {
+                        ambientIntensity 0.245763
+                        diffuseColor 0.336312 0.24807 0.201129
+                        shininess 0.061224
+                        specularColor 0.108805 0.098067 0.096807
+                      }
+                    }
+                  }
+              ]
+            }
+        ]
+      }
+  ]
+}
+DEF GateOpenSensor ProximitySensor { 
+  center 0 0.45 9
+  size 11 11 11
+} 
+Transform {
+  children [
+      Sound {
+        direction 1 1 1
+        maxBack 100
+        maxFront 100
+        minBack 10
+        minFront 10
+        source DEF DoorSound AudioClip {
+          description "Door sound"
+          url [ "sound/door.wav" ]
+        }
+      }
+  ]
+}
+Transform {
+}
+Viewpoint {
+  description "Front"
+  orientation 1 0 0 -0.3
+  position 0 2 20
+}
+Viewpoint {
+  description "MainDoor"
+  orientation 1 0 0 -1.57
+  position 0 3 8.75
+}
+
+ROUTE GateOpenSensor.enterTime TO FENCEDoorTimer1.set_startTime
+ROUTE GateOpenSensor.enterTime TO FENCEDoorTimer2.set_startTime
+ROUTE FENCELeftDoorSensor.touchTime TO FENCEDoorTimer1.set_startTime
+ROUTE FENCEDoorTimer1.fraction_changed TO FENCELeftDoorInterpolator.set_fraction
+ROUTE FENCELeftDoorInterpolator.value_changed TO FENCELeftDoorTX.set_rotation
+ROUTE FENCERightDoorSensor.touchTime TO FENCEDoorTimer2.set_startTime
+ROUTE FENCEDoorTimer2.fraction_changed TO FENCERightDoorInterpolator.set_fraction
+ROUTE FENCERightDoorInterpolator.value_changed TO FENCERightDoorTX.set_rotation
+ROUTE FENCELeftDoorSensor.touchTime TO DoorSound.set_startTime
+ROUTE FENCERightDoorSensor.touchTime TO DoorSound.set_startTime

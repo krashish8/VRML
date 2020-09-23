@@ -1,0 +1,181 @@
+#VRML V2.0 utf8
+
+NavigationInfo { type [ "EXAMINE" "ANY" ] } ###  Default X3D NavigationInfo
+
+WorldInfo {
+  title "Bell.x3d"
+}
+Viewpoint {
+  description "BellFront"
+  position 0 -1.2 7
+}
+Group {
+  children [
+      PointLight {
+        intensity 0.2
+        location 3 3 3
+      }
+      DEF BELLTx Transform {
+        rotation 1 0 0 0.001
+        children [
+            DEF BELL Group {
+              children [
+                  Transform {
+                    rotation 1 0 0 3.1415
+                    scale 0.5 0.5 0.5
+                    children [
+                        Shape {
+                          geometry Extrusion {
+                            creaseAngle 1.57
+                            crossSection [ 1 0 0.92 -0.38 0.71 -0.71 0.38 -0.92 0 -1 -0.38 -0.92 -0.71 -0.71 -0.92 -0.38 -1 -0 -0.92 0.38 -0.71 0.71 -0.38 0.92 0 1 0.38 0.92 0.71 0.71 0.92 0.38 1 0 ]
+                            endCap FALSE
+                            scale [ .00001 .00001 0.8 0.8 1.0 1.0 1.1 1.1 1.15 1.15 1.15 1.15 1.2 1.2 1.45 1.45 1.8 1.8 1.85 1.85 1.87 1.87 1.8 1.8 1.67 1.67 1.65 1.65 1.6 1.6 1.25 1.25 1.0 1.0 .95 0.95 .95 .95 .9 .9 0.8 0.8 0.00001 0.00001 ]
+                            solid FALSE
+                            spine [ 0 0.0 0 0 0.2 0 0 0.4 0 0 0.8 0 0 1.2 0 0 1.6 0 0 2.0 0 0 2.4 0 0 2.8 0 0 3.2 0 0 3.3 0 0 3.32 0 0 3.3 0 0 3.2 0 0 2.8 0 0 2.4 0 0 2.0 0 0 1.6 0 0 1.2 0 0 0.8 0 0 0.4 0 0 0.2 0 ]
+                          }
+                          appearance DEF GoldApp Appearance {
+                            material Material {
+                              ambientIntensity 0.4
+                              diffuseColor 0.22 0.15 0
+                              shininess 0.16
+                              specularColor 0.71 0.70 0.56
+                            }
+                          }
+                        }
+                        DEF BellRingSensor ProximitySensor { 
+                          center 0 0 0 
+                          size 1 40 40
+                        } 
+                    ]
+                  }
+                  DEF BELLTimeS TimeSensor {
+                    cycleInterval 4
+                  }
+                  DEF BELLTimeS1 TimeSensor {
+                    cycleInterval 2.
+                  }
+ ### Warning:  no ROUTE found for TimeSensor output
+                  DEF BELLTouchS TouchSensor {
+                  }
+                  DEF BELLInterpolator OrientationInterpolator {
+                    key [ 0.0 0.15 0.7 1.0 ]
+                    keyValue [ 0 0.0 1 0.0 .0 0.0 1 0.475 .0 0.0 1 -0.475 .0 0.0 1 0 ]
+                  }
+                  Transform {
+                    children [
+                        Transform {
+                          children [
+                              Shape {
+                                geometry Cylinder {
+                                  height 0.15
+                                  radius 0.08
+                                }
+                                appearance USE GoldApp
+                              }
+                          ]
+                        }
+                    ]
+                  }
+              ]
+            }
+        ]
+      }
+      Transform {
+        children [
+            DEF BELLBall Group {
+              children [
+                  Transform {
+                    translation 0 -0.9 0
+                    children [
+                        Shape {
+                          appearance USE GoldApp
+                          geometry Cylinder {
+                            height 1.7
+                            radius 0.02
+                          }
+                        }
+                    ]
+                  }
+                  Transform {
+                    translation 0 -1.8 0
+                    children [
+                        Shape {
+                          appearance USE GoldApp
+                          geometry Sphere {
+                            radius .1
+                          }
+                        }
+                    ]
+                  }
+              ]
+            }
+        ]
+      }
+      Transform {
+        children [
+            Group {
+              children [
+                  Transform {
+                    children [
+                        Transform {
+                          translation -2 -2.5 0
+                          children [
+                              DEF BELLBeam Shape {
+                                geometry Box {
+                                  size 0.4 6 0.4
+                                }
+                                appearance DEF WoodApp Appearance {
+                                  material Material {
+                                    diffuseColor 0.8 0.5 0.1
+                                  }
+                                  texture ImageTexture {
+                                    url [ "images/wood.jpg" ]
+                                  }
+                                }
+                              }
+                          ]
+                        }
+                        Transform {
+                          translation 2 -2.5 0
+                          children [
+                              USE BELLBeam
+                          ]
+                        }
+                        Transform {
+                          translation 0 0.3 0
+                          children [
+                              Shape {
+                                geometry Box {
+                                  size 3.6 0.4 0.4
+                                }
+                                appearance USE WoodApp
+                              }
+                          ]
+                        }
+                    ]
+                  }
+              ]
+            }
+        ]
+      }
+      DEF BELLSound Sound {
+        direction 1 1 1
+        maxBack 65
+        maxFront 65
+        minBack 60
+        minFront 60
+        source DEF BELLClip AudioClip {
+          url [ "sound/dong.wav" ]
+        }
+      }
+  ]
+ROUTE BellRingSensor.enterTime TO BELLClip.set_startTime
+ROUTE BellRingSensor.enterTime TO BELLTimeS.set_startTime
+ROUTE BELLTouchS.touchTime TO BELLTimeS.set_startTime
+ROUTE BELLTimeS.fraction_changed TO BELLInterpolator.set_fraction
+ROUTE BELLInterpolator.value_changed TO BELLTx.set_rotation
+ROUTE BELLTouchS.touchTime TO BELLClip.set_startTime
+}
+Background {
+  skyColor [ 0.15 0.15 0.8 ]
+}

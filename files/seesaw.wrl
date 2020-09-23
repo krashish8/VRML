@@ -1,0 +1,199 @@
+#VRML V2.0 utf8
+
+NavigationInfo { type [ "EXAMINE" "ANY" ] } ###  Default X3D NavigationInfo
+
+WorldInfo {
+  title "SeeSaw"
+}
+DEF SEESAWTx Transform {
+  rotation 0 0 1 -0.22
+  children [
+      DEF SEESAW Group {
+        children [
+            Transform {
+              children [
+                  DEF Plank Shape {
+                    geometry Box {
+                      size 4 0.05 0.3
+                    }
+                    appearance Appearance {
+                      material Material {
+                        diffuseColor 0.9 0.3 0.1
+                      }
+                      texture DEF WOODTexture ImageTexture {
+                        url [ "images/wood.jpg" ]
+                      }
+                    }
+                  }
+              ]
+            }
+            Transform {
+              translation 1.6 0.1 -0.1
+              children [
+                  DEF ROD Shape {
+                    geometry Cylinder {
+                      height 0.15
+                      radius 0.03
+                    }
+                    appearance Appearance {
+                      material Material {
+                        diffuseColor 0.7 0.7 0.7
+                      }
+                    }
+                  }
+                  Transform {
+                   translation 0.1 0.18 0.1
+                   rotation 0 1 0 1.57
+                    children [
+                     Shape {
+                      appearance Appearance {
+                         texture ImageTexture {
+                          url "images/sitting.png"
+                         }}
+                        geometry Box {
+                           size  0  1.0  0.5
+                        }
+                     }
+                    ]
+                  }
+              ]
+            }
+            Transform {
+              translation -1.6 0.1 0.1
+              children [
+                  USE ROD
+                  Transform {
+                   translation -0.1 0.18 -0.1
+                   rotation 0 1 0 1.57
+                    children [
+                     Shape {
+                      appearance Appearance {
+                         texture ImageTexture {
+                          url "images/sitting-right.png"
+                         }}
+                        geometry Box {
+                           size  0  1.0  0.5
+                        }
+                     }
+                    ]
+                  }
+              ]
+            }
+            Transform {
+              translation -1.6 0.1 -0.1
+              children [
+                  USE ROD
+              ]
+            }
+            Transform {
+              translation 1.6 0.1 0.1
+              children [
+                  USE ROD
+              ]
+            }
+            Transform {
+              rotation 1 0 0 1.575
+              scale 1.2 2.5 1
+              translation 1.6 0.18 0
+              children [
+                  USE ROD
+              ]
+            }
+            Transform {
+              rotation 1 0 0 1.575
+              scale 1.2 2.5 1
+              translation -1.6 0.18 0
+              children [
+                  USE ROD
+              ]
+            }
+            DEF SEESAWTimer TimeSensor {
+              cycleInterval 10
+              loop TRUE
+              startTime 0.0
+              stopTime -1.0
+            }
+            DEF SEESAWInt OrientationInterpolator {
+              key [ 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 ]
+              keyValue [ 0 0 1 -0.22 0 0 1 0.22 0 0 1 -0.22 0 0 1 0.22 0 0 1 -0.22 0 0 1 0.22 0 0 1 -0.22 0 0 1 0.22 0 0 1 -0.22 0 0 1 0.22 0 0 1 -0.22 ]
+            }
+        ]
+      }
+  ]
+}
+Transform {
+  children [
+      DEF SEESAWBody Group {
+        children [
+            Transform {
+              translation 0 0 0.2
+              children [
+                  DEF SIDEPanel Group {
+                    children [
+                        Transform {
+                          rotation 1 0 0 1.575
+                          children [
+                              Shape {
+                                geometry Cylinder {
+                                  height 0.05
+                                  radius 0.2
+                                }
+                                appearance DEF PANELApp Appearance {
+                                  material Material {
+                                    diffuseColor 0.1 0.1 0.9
+                                  }
+                                }
+                              }
+                          ]
+                        }
+                        Transform {
+                          translation 0 -0.2 0
+                          children [
+                              Shape {
+                                geometry Box {
+                                  size 0.4 0.6 0.05
+                                }
+                                appearance USE PANELApp
+                              }
+                          ]
+                        }
+                        Transform {
+                          translation 1.6 0 0.1
+                          children [
+                              Shape {
+                              }
+                          ]
+                        }
+                    ]
+                  }
+              ]
+            }
+            Transform {
+              translation 0 0 -0.2
+              children [
+                  USE SIDEPanel
+              ]
+            }
+            DEF PIVOT Transform {
+              rotation 1 0 0 1.575
+              children [
+                  Shape {
+                    geometry Cylinder {
+                      height 0.5
+                      radius 0.024
+                    }
+                    appearance USE PANELApp
+                  }
+              ]
+            }
+        ]
+      }
+  ]
+ROUTE SEESAWTimer.fraction_changed TO SEESAWInt.set_fraction
+ROUTE SEESAWInt.value_changed TO SEESAWTx.set_rotation
+}
+Viewpoint {
+  description "SeeSaw"
+  orientation 1 0 0 -0.87575
+  position 0 3 3
+}
