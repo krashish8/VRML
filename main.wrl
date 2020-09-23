@@ -2,7 +2,7 @@
 
 WorldInfo {
   title "Wonderland"
-  info  [ "By Harshit Agrawal (18074019) and Ashish Kumar (18075068)", "Computer Graphics VRML Assignment" ]
+  info  [ "By Ashish Kumar (18075068) and Harshit Agrawal (18074019)", "Computer Graphics VRML Assignment" ]
 }
 
 NavigationInfo {
@@ -277,11 +277,17 @@ DEF Tree2 Transform {
 
 # Plane and its translation
 DEF Plane Transform {
-  translation 3500 1500 -5000
-  scale 15 15 15
+  translation 3500 5500 -5000
+  scale 3 3 3
+  rotation 0 1 0 -1.57
   children [
-    Inline {
-      url "files/plane.wrl"
+    Transform{
+      rotation 1 0 0 4.71
+      children[
+        Inline {
+          url "files/plane.wrl"
+        }
+      ]
     }
   ]
 }
