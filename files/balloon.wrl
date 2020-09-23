@@ -28,9 +28,11 @@ DEF Balloon Transform {
               children [
                   Shape {
                     appearance Appearance {
-                      material Material {
-                        diffuseColor .8 .8 .8
-                      }
+                      texture ImageTexture {
+                       url "images/balloon.jpg"
+                       repeatS FALSE
+                       repeatT FALSE
+                    }
                     }
                     geometry Box {
                       size .85 .85 .85
@@ -180,8 +182,8 @@ DEF BalloonClock TimeSensor {
   loop TRUE
 }
 DEF BalloonPath PositionInterpolator {
-  key [ 0 .1 .15 .2 .25 .3 .5 1 ]
-  keyValue [ 0 0 0 0 0 0 0 .5 0 0 1 0 0 2 0 0 4 0 0 12 0 0 28 0 ]
+  key [ 0 .1 .3 .5 .7 .9 1 ]
+  keyValue [ 0 0 0, 0 0 0, 0 .5 0, 0 2 0, 0 4 0, 0 8 0, 0 10 0]
 }
 ROUTE FireClock.fraction_changed TO FirePath.set_fraction
 ROUTE FirePath.value_changed TO Fire.set_translation

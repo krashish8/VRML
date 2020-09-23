@@ -80,13 +80,11 @@ DEF ViewOrientation OrientationInterpolator {
 
 DEF NormalTimer TimeSensor { 
     cycleInterval 61
-    loop TRUE 
     startTime -1.0
 }
 
-ROUTE StopTouchSensor.touchTime TO NormalTimer.stopTime
-
 ROUTE PlayTouchSensor.touchTime TO NormalTimer.startTime
+ROUTE StopTouchSensor.touchTime TO NormalTimer.stopTime
 ROUTE NormalTimer.fraction_changed TO ViewPosition.set_fraction 
 ROUTE NormalTimer.fraction_changed TO ViewOrientation.set_fraction 
 ROUTE ViewPosition.value_changed TO CameraTranslation.set_translation
@@ -104,6 +102,7 @@ DEF MovieSound Sound {
 }
 
 ROUTE PlayTouchSensor.touchTime TO MovieSoundClip.set_startTime
+ROUTE StopTouchSensor.touchTime TO MovieSoundClip.set_stopTime
 
 DEF StartMoviePosition PositionInterpolator { 
      key [0 1] 
@@ -690,18 +689,18 @@ children [
 }
 
 DEF CarTimer TimeSensor { 
-    cycleInterval 50
+    cycleInterval 20
     loop TRUE 
 }
 
 DEF CarPosition PositionInterpolator { 
-   key [ 0 0.25 0.5 0.75 1 ] 
-   keyValue [95 1.5 95, 95 1.5 -90, -75 1.5 -90, -75 1.5 95, 95 1.5 95] 
+   key [ 0 0.5 1] 
+   keyValue [95 1.5 95, 95 1.5 -90, 95 1.5 95] 
 } 
 
 DEF CarRotation OrientationInterpolator { 
-   key [ 0 0.2 0.23 0.27 0.48 0.52 0.73 0.77 0.98 1 ] 
-   keyValue [0 1 0 1.57, 0 1 0 1.57, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 4.71, 0 1 0 6.28, 0 1 0 6.28, 0 1 0 0.785]
+   key [ 0 0.5 0.5 1 ] 
+   keyValue [0 1 0 1.57,0 1 0 1.57, 0 1 0 -1.57, 0 1 0 -1.57,]
 } 
 
 
