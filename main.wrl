@@ -8,12 +8,9 @@ WorldInfo {
 NavigationInfo {
   avatarSize [0.25, 3.3, 0.75]
   speed 20.0
-  type "WALK"
+  type "NONE"
 }
 
-Collision{
-  collide  TRUE
-}
 
 DEF TheSun DirectionalLight {
   direction 0 -1 0
