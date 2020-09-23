@@ -1,49 +1,5 @@
 #VRML V2.0 utf8
-#
-#  FILE
-#    bounce.wrl     11k
-#
-#  SUPPORTING FILES
-#    stone1.jpg      3k
-#    mud01.jpg       2k
-#    bluesat.jpg     2k
-#                   ----
-#                    18k    =  13 sec @ 14.4 download time
-#                           =  6 sec @ 28.8
-#                           =  5 sec @ 36.6
-#
-#  DESCRIPTION
-#    This world builds a pedestal with glowing, rising rings and
-#    a bouncing ball.
-#
-#  IMPLIMENTATION NOTES
-#    This world illustrates the use of multiple interpolators
-#    to drive multiple animations.  Two cylinders in the center
-#    of the world have ring textures mapped to them.  Using a
-#    PositionInterpolator for each one, the cylinders are moved
-#    slowly upward, creating a perpetually rising glowing ring
-#    effect.
-#
-#    At the same time, a set of interpolators create a perpetually
-#    bouncing ball.  Each ball bounce is controlled by a
-#    PositionInterpolator.  Another PositionInterpolator scales
-#    the ball each time it strikes the ground, creating the
-#    appearance of a squishy, bouncy ball.  Simultaneously, a
-#    pair of PositionInterpolator and OrientationInterpolator nodes
-#    move the bouncing ball in a circular pattern around the
-#    glowing rings.
-#
-#  EXPERIMENTATION
-#    Add more bouncing balls!
-#
-#    Change the path of the bouncing ball by changing the path
-#    interpolator's key positions and orientations.
-#
 
-WorldInfo {
-    title "Bouncing"
-    info "Copyright (c) 1997, David R. Nadeau"
-}
 Viewpoint {
     position 0.0 2.0 11.0
     description "Entry view"

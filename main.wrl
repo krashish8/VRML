@@ -1,124 +1,9 @@
 #VRML V2.0 utf8
 
-#Set Background
-Background {
-	skyAngle [   2 ]
-	skyColor [    0.6 1 1, 1 0.8 0.6 ]
-	groundAngle [ 0.5, 1, 1.53 ]
-	groundColor [ 0 0 0, 0.2 0.5 0, 0.3 0.4 0, 0.8 0.6 0.4 ]
+WorldInfo {
+  title "Wonderland"
+  info  [ "By Harshit Agrawal (18074019) and Ashish Kumar (18075068)", "Computer Graphics VRML Assignment" ]
 }
-
-DEF StartMovie Transform{
-  translation 15 15 -30
-  children[
-    Shape {
-       geometry Box {
-         size 10 5 0
-         solid TRUE
-       }
-       appearance Appearance {
-          texture ImageTexture {
-             url "files/images/play.jpg"
-             repeatS FALSE
-             repeatT FALSE
-          }
-       }
-    }
-    DEF PlayTouchSensor TouchSensor {
-    }
-  ]
-}
-
-DEF StopMovie Transform{
-  translation 15 15 370
-  children[
-    Shape {
-       geometry Box {
-         size 10 5 0
-         solid TRUE
-       }
-       appearance Appearance {
-          texture ImageTexture {
-             url "files/images/stop.jpg"
-             repeatS FALSE
-             repeatT FALSE
-          }
-       }
-    }
-    DEF StopTouchSensor TouchSensor {
-    }
-  ]
-}
-
-DEF Camera_Rot Transform {
-  children [
-    DEF CameraTranslation Transform {
-      children [
-        DEF Camera_001 Viewpoint {
-          description "Camera.001" 
-          position 0 0 0
-          orientation 1 0 0 0.2
-        }
-      ]
-    }
-  ]
-}
-
-
- DEF ViewPosition PositionInterpolator { 
-     key [0.000 0.142 0.232 0.286 0.399 0.500 0.534 0.637 0.683 0.778 0.858 1.000] 
-     keyValue [0 5 200, 0 5 98.69, 64.31 5 92.01, 62.78 5 53.31, 77.83 5 -25.86, 
-              5.87 5 -25.81, 10.97 5 -1.94, -62.53 5 -4.18, -67.68 5 28.16, -0.82 5 41.30, -2.35 5 98.69, 0 5 200] 
-
-} 
-
-DEF ViewOrientation OrientationInterpolator {
-     key [0 0.025 0.117 0.167 0.207 0.257 0.261 0.311 0.374 0.424 0.475 0.510 0.524 0.559 0.612 0.652 0.668 0.708 0.753 0.803 0.833 0.883 0.975 1] 
-
-     keyValue [0 1 0 0, 0 1 0 0, 0 1 0 0, 0 1 0 -1.467, 0 1 0 -1.467, 0 1 0 0.040, 0 1 0 0.040, 0 1 0 -0.188, 0 1 0 -0.188, 0 1 0 1.570, 0 1 0 1.570, 0 1 0 3.352, 0 1 0 3.352, 0 1 0 1.602, 0 1 0 1.602, 0 1 0 2.984, 0 1 0 2.984, 0 1 0 -1.765, 0 1 0 -1.765, 0 1 0 3.142, 0 1 0 3.142, 0 1 0 3.142, 0 1 0 3.142] 
-}
-
-DEF NormalTimer TimeSensor { 
-    cycleInterval 61
-    startTime -1.0
-}
-
-ROUTE PlayTouchSensor.touchTime TO NormalTimer.startTime
-ROUTE StopTouchSensor.touchTime TO NormalTimer.stopTime
-ROUTE NormalTimer.fraction_changed TO ViewPosition.set_fraction 
-ROUTE NormalTimer.fraction_changed TO ViewOrientation.set_fraction 
-ROUTE ViewPosition.value_changed TO CameraTranslation.set_translation
-ROUTE ViewOrientation.value_changed TO CameraTranslation.set_rotation
-
-DEF MovieSound Sound {
-  direction 1 1 1
-  maxBack 400
-  maxFront 400
-  minBack 300
-  minFront 300
-  source DEF MovieSoundClip AudioClip {
-    url [ "files/sound/movie-music.ogg" ]
-  }
-}
-
-ROUTE PlayTouchSensor.touchTime TO MovieSoundClip.set_startTime
-ROUTE StopTouchSensor.touchTime TO MovieSoundClip.set_stopTime
-
-DEF StartMoviePosition PositionInterpolator { 
-     key [0 1] 
-     keyValue [15 15 -30, 15 15 -330] 
-}
-
-DEF StopMoviePosition PositionInterpolator { 
-     key [0 1] 
-     keyValue [15 15 470, 15 15 170] 
-}
-
-ROUTE NormalTimer.fraction_changed TO StartMoviePosition.set_fraction 
-ROUTE StartMoviePosition.value_changed TO StartMovie.set_translation
-ROUTE NormalTimer.fraction_changed TO StopMoviePosition.set_fraction 
-ROUTE StopMoviePosition.value_changed TO StopMovie.set_translation
-
 
 NavigationInfo {
   avatarSize [0.25, 3.3, 0.75]
@@ -131,56 +16,187 @@ DEF TheSun DirectionalLight {
   ambientIntensity 1
 }
 
-#Increase frame size
+# Background
+Background {
+  skyAngle [ 2 ]
+  skyColor [ 0.6 1 1, 1 0.8 0.6 ]
+  groundAngle [ 0.5, 1, 1.53 ]
+  groundColor [ 0 0 0, 0.2 0.5 0, 0.3 0.4 0, 0.8 0.6 0.4 ]
+}
+
+
+
+# Camera and the interpolators
+DEF Camera Transform {
+  children [
+    DEF CameraTranslation Transform {
+      children [
+        DEF CameraViewpoint Viewpoint {
+          description "Camera"
+          position 0 0 0
+          orientation 1 0 0 0.2
+        }
+      ]
+    }
+  ]
+}
+
+
+DEF ViewPosition PositionInterpolator { 
+  key [ 0.000 0.142 0.232 0.286 0.399 0.500 0.534 0.637 0.683 0.778 0.858 1.000 ] 
+  keyValue [ 0 5 200, 0 5 98.69, 64.31 5 92.01, 62.78 5 53.31, 77.83 5 -25.86, 5.87 5 -25.81, 10.97 5 -1.94, -62.53 5 -4.18, -67.68 5 28.16, -0.82 5 41.30, -2.35 5 98.69, 0 5 200 ] 
+
+} 
+
+DEF ViewOrientation OrientationInterpolator {
+  key [ 0 0.025 0.117 0.167 0.207 0.257 0.261 0.311 0.374 0.424 0.475 0.510 0.524 0.559 0.612 0.652 0.668 0.708 0.753 0.803 0.833 0.883 0.975 1 ] 
+  keyValue [ 0 1 0 0, 0 1 0 0, 0 1 0 0, 0 1 0 -1.467, 0 1 0 -1.467, 0 1 0 0.040, 0 1 0 0.040, 0 1 0 -0.188, 0 1 0 -0.188, 0 1 0 1.570, 0 1 0 1.570, 0 1 0 3.352, 0 1 0 3.352, 0 1 0 1.602, 0 1 0 1.602, 0 1 0 2.984, 0 1 0 2.984, 0 1 0 -1.765, 0 1 0 -1.765, 0 1 0 3.142, 0 1 0 3.142, 0 1 0 3.142, 0 1 0 3.142 ] 
+}
+
+DEF NormalTimer TimeSensor { 
+  cycleInterval 61
+  startTime -1.0
+}
+
+
+
+# Start Movie Button
+DEF StartMovie Transform{
+  translation 15 15 -30
+  children [
+    Shape {
+      geometry Box {
+        size 10 5 0
+        solid TRUE
+      }
+      appearance Appearance {
+        texture ImageTexture {
+          url "files/images/play.jpg"
+          repeatS FALSE
+          repeatT FALSE
+        }
+      }
+    }
+    DEF PlayTouchSensor TouchSensor { }
+  ]
+}
+
+# Stop Movie Button
+DEF StopMovie Transform{
+  translation 15 15 370
+  children [
+    Shape {
+      geometry Box {
+        size 10 5 0
+        solid TRUE
+      }
+      appearance Appearance {
+        texture ImageTexture {
+          url "files/images/stop.jpg"
+          repeatS FALSE
+          repeatT FALSE
+        }
+      }
+    }
+    DEF StopTouchSensor TouchSensor { }
+  ]
+}
+
+# Start/stop the timer on pressing the Play/Stop button respectively
+ROUTE PlayTouchSensor.touchTime TO NormalTimer.startTime
+ROUTE StopTouchSensor.touchTime TO NormalTimer.stopTime
+
+# Move the camera on starting the timer
+ROUTE NormalTimer.fraction_changed TO ViewPosition.set_fraction 
+ROUTE NormalTimer.fraction_changed TO ViewOrientation.set_fraction 
+ROUTE ViewPosition.value_changed TO CameraTranslation.set_translation
+ROUTE ViewOrientation.value_changed TO CameraTranslation.set_rotation
+
+
+
+
+# Play/stop the movie sound on pressing the Play/Stop button
+DEF MovieSound Sound {
+  direction 1 1 1
+  maxBack 400
+  maxFront 400
+  minBack 300
+  minFront 300
+  source DEF MovieSoundClip AudioClip {
+    url [ "files/sound/movie-music.ogg" ]
+  }
+}
+ROUTE PlayTouchSensor.touchTime TO MovieSoundClip.set_startTime
+ROUTE StopTouchSensor.touchTime TO MovieSoundClip.set_stopTime
+
+
+
+# Translate the Play/Stop button away from the viewpoint
+DEF StartMoviePosition PositionInterpolator { 
+  key [ 0 1 ]
+  keyValue [ 15 15 -30, 15 15 -330 ]
+}
+
+DEF StopMoviePosition PositionInterpolator { 
+  key [ 0 1 ]
+  keyValue [ 15 15 470, 15 15 170 ]
+}
+ROUTE NormalTimer.fraction_changed TO StartMoviePosition.set_fraction 
+ROUTE StartMoviePosition.value_changed TO StartMovie.set_translation
+ROUTE NormalTimer.fraction_changed TO StopMoviePosition.set_fraction 
+ROUTE StopMoviePosition.value_changed TO StopMovie.set_translation
+
+
+
+# Increase frame size
 Shape {
     geometry Box {
     size 200000000 100000000 20000000
   }
   appearance Appearance {
-           material Material { 
+      material Material { 
       diffuseColor 1 1 1
       transparency 0
-     }
     }
+  }
 }
 
-#Secondary Ground
+# Secondary Ground
 Transform{
-   translation 0 -5.2 0
-   children[
-      Shape {
-         geometry Box {
-           size 20000 10 20000
-         }
-         appearance Appearance {
-            texture ImageTexture {
-               url "files/images/grass1.jpg"
-               repeatS FALSE
-               repeatT FALSE
-            }
-         }
+  translation 0 -5.2 0
+  children[
+    Shape {
+      geometry Box {
+        size 20000 10 20000
       }
-   ]
+      appearance Appearance {
+        texture ImageTexture {
+          url "files/images/grass1.jpg"
+          repeatS FALSE
+          repeatT FALSE
+        }
+      }
+    }
+  ]
 }
 
-
-#Primary Ground
+# Primary Ground
 Transform{
-   translation 0 -5.1 0
-   children[
-      Shape {
-         geometry Box {
-           size 210 10 210
-         }
-         appearance Appearance {
-            texture ImageTexture {
-               url "files/images/grass1.jpg"
-               repeatS FALSE
-               repeatT FALSE
-            }
-         }
+  translation 0 -5.1 0
+  children[
+    Shape {
+      geometry Box {
+        size 210 10 210
       }
-   ]
+      appearance Appearance {
+        texture ImageTexture {
+          url "files/images/grass1.jpg"
+          repeatS FALSE
+          repeatT FALSE
+        }
+      }
+    }
+  ]
 }
 
 
@@ -188,8 +204,8 @@ DEF MerryGoRound Transform {
   translation -10 1 20
   scale 1 1 1
   children [
-   Inline {
-    url "files/merry-go-round.wrl"
+    Inline {
+      url "files/merry-go-round.wrl"
     }
   ]
 }
@@ -198,509 +214,488 @@ DEF MerryGoRound Transform {
   translation 30 1 70
   scale 1 1 1
   children [
-   Inline {
-    url "files/merry-go-round.wrl"
+    Inline {
+      url "files/merry-go-round.wrl"
     }
   ]
 }
 
 DEF Slide Transform {
-translation -50 2 -50
-scale 1 2 1
-children [
- Inline {
-  url "files/slide.wrl"
-  }
-]
+  translation -50 2 -50
+  scale 1 2 1
+  children [
+    Inline {
+      url "files/slide.wrl"
+    }
+  ]
 }
 
 
-DEF tree-1 Transform {
-translation -50 0 -20
-scale 1 1 1
-children [
- Inline {
-  url "files/tree1.wrl"
-  }
-]
+
+# All the trees
+DEF Tree1 Transform {
+  translation -50 0 -20
+  scale 1 1 1
+  children [
+    Inline {
+      url "files/tree1.wrl"
+    }
+  ]
+}
+
+DEF Tree1 Transform {
+  translation 80 0 90
+  scale 1 1 1
+  children [
+    Inline {
+      url "files/tree1.wrl"
+    }
+  ]
+}
+
+DEF Tree1 Transform {
+  translation 50 0 20
+  scale 1 1 1
+  children [
+    Inline {
+      url "files/tree1.wrl"
+    }
+  ]
+}
+
+DEF Tree2 Transform {
+  translation 70 15 50
+  scale 5 5 5
+  children [
+    Inline {
+      url "files/tree2.wrl"
+    }
+  ]
 }
 
 
-DEF tree-1 Transform {
-translation 80 0 90
-scale 1 1 1
-children [
- Inline {
-  url "files/tree1.wrl"
-  }
-]
-}
 
-
-DEF tree-1 Transform {
-translation 50 0 20
-scale 1 1 1
-children [
- Inline {
-  url "files/tree1.wrl"
-  }
-]
-}
-
-DEF tree-2 Transform {
-translation 70 15 50
-scale 5 5 5
-children [
- Inline {
-  url "files/tree2.wrl"
-  }
-]
-}
-
-
+# Plane and its translation
 DEF Plane Transform {
-translation 3500 1500 -5000
-scale 15 15 15
-children [
- Inline {
-  url "files/plane.wrl"
-  }
-]
+  translation 3500 1500 -5000
+  scale 15 15 15
+  children [
+    Inline {
+      url "files/plane.wrl"
+    }
+  ]
 }
 
-
-DEF timer TimeSensor { 
-      cycleInterval 20
-      loop TRUE 
+DEF PlaneTimer TimeSensor { 
+  cycleInterval 20
+  loop TRUE 
 }
 
-DEF pi PositionInterpolator { 
-               key [ 0 10 ] 
-               keyValue [3500 1500 -5000, -102500 1500 -5000] 
+DEF PlaneInterpolator PositionInterpolator { 
+  key [ 0 10 ] 
+  keyValue [3500 1500 -5000, -102500 1500 -5000] 
 } 
 
+ROUTE PlaneTimer.fraction_changed TO PlaneInterpolator.set_fraction 
+ROUTE PlaneInterpolator.value_changed TO Plane.set_translation 
 
-ROUTE timer.fraction_changed TO pi.set_fraction 
-ROUTE pi.value_changed TO Plane.set_translation 
 
 
 DEF Spiral Transform {
-translation 0 0 -50
-scale 1 1 1
-children [
- Inline {
-  url "files/spiral.wrl"
-  }
-]
+  translation 0 0 -50
+  scale 1 1 1
+  children [
+    Inline {
+      url "files/spiral.wrl"
+    }
+  ]
 }
 
 DEF Spiral Transform {
-translation -30 0 50
-scale 1 1 1
-children [
- Inline {
-  url "files/spiral.wrl"
-  }
-]
+  translation -30 0 50
+  scale 1 1 1
+  children [
+    Inline {
+      url "files/spiral.wrl"
+    }
+  ]
 }
 
 
 
 DEF Fence Transform {
-translation 0 9 0
-scale 12 12 12
-children [
- Inline {
-  url "files/fence.wrl"
-  }
-]
+  translation 0 9 0
+  scale 12 12 12
+  children [
+    Inline {
+      url "files/fence.wrl"
+    }
+  ]
 }
 
-DEF Swing_boy Transform {
-translation -90 5 0
-scale 6 6 6
-rotation 0 1 0 1.57
-children [
- Inline {
-  url "files/swing.wrl"
-  }
-]
-}
-
-
-DEF Swing_boy Transform {
-translation -90 5 80
-scale 6 6 6
-rotation 0 1 0 1.57
-children [
- Inline {
-  url "files/swing.wrl"
-  }
-]
+DEF SwingBoy Transform {
+  translation -90 5 0
+  scale 6 6 6
+  rotation 0 1 0 1.57
+  children [
+    Inline {
+      url "files/swing.wrl"
+    }
+  ]
 }
 
 
-DEF SeeSaw_boy Transform {
-translation -90 2 40
-scale 4 4 4
-rotation 0 1 0 1.57
-children [
- Inline {
-  url "files/seesaw.wrl"
-  }
-]
+DEF SwingBoy Transform {
+  translation -90 5 80
+  scale 6 6 6
+  rotation 0 1 0 1.57
+  children [
+    Inline {
+      url "files/swing.wrl"
+    }
+  ]
 }
 
-DEF SeeSaw_boy Transform {
-translation 30 2 -60
-scale 4 4 4
-rotation 0 1 0 0
-children [
- Inline {
-  url "files/seesaw.wrl"
-  }
-]
+
+DEF SeeSawBoy Transform {
+  translation -90 2 40
+  scale 4 4 4
+  rotation 0 1 0 1.57
+  children [
+    Inline {
+      url "files/seesaw.wrl"
+    }
+  ]
+}
+
+DEF SeeSawBoy Transform {
+  translation 30 2 -60
+  scale 4 4 4
+  rotation 0 1 0 0
+  children [
+    Inline {
+      url "files/seesaw.wrl"
+    }
+  ]
 }
 
 
 DEF Slides Transform {
-translation 70 0 -60
-scale 4 4 4
-rotation 0 1 0 0
-children [
- Inline {
-  url "files/slides.wrl"
-  }
-]
+  translation 70 0 -60
+  scale 4 4 4
+  rotation 0 1 0 0
+  children [
+    Inline {
+      url "files/slides.wrl"
+    }
+  ]
 }
 
 DEF Slides Transform {
-translation -50 0 70
-scale 4 4 4
-rotation 0 1 0 4.71
-children [
- Inline {
-  url "files/slides.wrl"
-  }
-]
+  translation -50 0 70
+  scale 4 4 4
+  rotation 0 1 0 4.71
+  children [
+    Inline {
+      url "files/slides.wrl"
+    }
+  ]
 }
 
 
 DEF Bell Transform {
-translation 0 38 105
-scale 7.1 6.9 6.9
-rotation 0 1 0 0
-children [
- Inline {
-  url "files/bell.wrl"
-  }
-]
+  translation 0 38 105
+  scale 7.1 6.9 6.9
+  rotation 0 1 0 0
+  children [
+    Inline {
+      url "files/bell.wrl"
+    }
+  ]
 }
 
-DEF banner Transform{
-      translation 0 48 105
-      children[
-        Shape {
-           geometry Box {
-             size 30 15 1
-             solid FALSE
-           }
-           appearance Appearance {
-              texture ImageTexture {
-                 url "files/images/banner.jpg"
-                 repeatS FALSE
-                 repeatT FALSE
-              }
-           }
+DEF Banner Transform{
+  translation 0 48 105
+  children[
+    Shape {
+      geometry Box {
+        size 30 15 1
+        solid FALSE
+      }
+      appearance Appearance {
+        texture ImageTexture {
+          url "files/images/banner.jpg"
+          repeatS FALSE
+          repeatT FALSE
+        }
+      }
+    }
+  ]
+}
+
+DEF BannerBeam Transform{
+  translation 0 48 105
+  children[
+    Shape {
+      geometry Box {
+        size 31.3 17 0.9
+        solid FALSE
+      }
+      appearance Appearance {
+        texture ImageTexture {
+          url "files/images/wood.jpg"
+          repeatS FALSE
+          repeatT FALSE
+        }
+      }
+    }
+  ]
+}
+
+
+
+DEF Tulip Transform {
+  translation -48 0 -20
+  children [
+    DEF Tulip1 Transform {
+      translation 0.1 2 0
+      scale 2 2 2
+      rotation 0 1 0 0
+      children [
+        Inline {
+          url "files/TulipCluster/TulipCluster1.wrl"
         }
       ]
     }
-
-DEF bannerbeam Transform{
-      translation 0 48 105
-      children[
-        Shape {
-           geometry Box {
-             size 31.3 17 0.9
-             solid FALSE
-           }
-           appearance Appearance {
-              texture ImageTexture {
-                 url "files/images/wood.jpg"
-                 repeatS FALSE
-                 repeatT FALSE
-              }
-           }
+    DEF Tulip2 Transform {
+      translation  0.2 2 0
+      scale 2 2 2
+      rotation 0 1 0 0
+      children [
+        Inline {
+          url "files/TulipCluster/TulipCluster2.wrl"
         }
       ]
     }
-
-
-
-DEF Tulip Transform{
-
-translation -48 0 -20
-
-children[
-
-DEF Tulip1 Transform {
-translation 0.1 2 0
-scale 2 2 2
-rotation 0 1 0 0
-children [
- Inline {
-  url "files/TulipCluster/TulipCluster1.wrl"
-  }
-]
-}
-
-DEF Tulip2 Transform {
-translation  0.2 2 0
-scale 2 2 2
-rotation 0 1 0 0
-children [
- Inline {
-  url "files/TulipCluster/TulipCluster2.wrl"
-  }
-]
-}
-
-DEF Tulip3 Transform {
-translation 0.3 2 0
-scale 2 2 2
-rotation 0 1 0 0
-children [
- Inline {
-  url "files/TulipCluster/TulipCluster3.wrl"
-  }
-]
-}
-
-DEF Tulip4 Transform {
-translation 0.4 2 0
-scale 2 2 2
-rotation 0 1 0 0
-children [
- Inline {
-  url "files/TulipCluster/TulipCluster4.wrl"
-  }
-]
-}
-
-DEF Tulip5 Transform {
-translation 0.5 2 0
-scale 2 2 2
-rotation 0 1 0 0
-children [
- Inline {
-  url "files/TulipCluster/TulipCluster5.wrl"
-  }
-]
-}
-  
-]
-
-
+    DEF Tulip3 Transform {
+      translation 0.3 2 0
+      scale 2 2 2
+      rotation 0 1 0 0
+      children [
+        Inline {
+          url "files/TulipCluster/TulipCluster3.wrl"
+        }
+      ]
+    }
+    DEF Tulip4 Transform {
+      translation 0.4 2 0
+      scale 2 2 2
+      rotation 0 1 0 0
+      children [
+        Inline {
+          url "files/TulipCluster/TulipCluster4.wrl"
+        }
+      ]
+    }
+    DEF Tulip5 Transform {
+      translation 0.5 2 0
+      scale 2 2 2
+      rotation 0 1 0 0
+      children [
+        Inline {
+          url "files/TulipCluster/TulipCluster5.wrl"
+        }
+      ]
+    }
+  ]
 }
 
 
 DEF Hut Transform {
-translation -20 7.5 -60
-scale 5 5 5
-rotation 0 1 0 1.57
-children [
- Inline {
-  url "files/hut.wrl"
-  }
-]
+  translation -20 7.5 -60
+  scale 5 5 5
+  rotation 0 1 0 1.57
+  children [
+    Inline {
+      url "files/hut.wrl"
+    }
+  ]
 }
 
 
-DEF bounce Transform {
-translation -50 0 15
-scale 3 3 3
-children [
- Inline {
-  url "files/bounce.wrl"
-  }
-]
+DEF Bounce Transform {
+  translation -50 0 15
+  scale 3 3 3
+  children [
+    Inline {
+      url "files/bounce.wrl"
+    }
+  ]
 }
-
 
 
 
 EXTERNPROTO TheSwingSet [
- field SFVec3f translation
- exposedField SFRotation rotation
- exposedField SFVec3f scale
+  field SFVec3f translation
+  exposedField SFRotation rotation
+  exposedField SFVec3f scale
 ]
 "files/theswingset.wrl.gz#TheSwingSet"
 
 EXTERNPROTO TheTeeterTotter [
- field SFVec3f translation
- exposedField SFRotation rotation
- exposedField SFVec3f scale
+  field SFVec3f translation
+  exposedField SFRotation rotation
+  exposedField SFVec3f scale
 ]
 "files/theteetertotter.wrl.gz#TheTeeterTotter"
 
 EXTERNPROTO TheWell [
- field SFVec3f translation
- exposedField SFRotation rotation
- exposedField SFVec3f scale
+  field SFVec3f translation
+  exposedField SFRotation rotation
+  exposedField SFVec3f scale
 ]
 "files/thewell.wrl.gz#TheWell"
+
 
 
 DEF ThePicnicPlace Group {
   children [
     TheSwingSet {
       translation 60 -7 -10
-  rotation 0 1 0 1.57
-  scale 0.15 0.15 0.15
+      rotation 0 1 0 1.57
+      scale 0.15 0.15 0.15
     }
     TheTeeterTotter {
       translation 40 3 35
-  rotation 0 1 0 0
-  scale 0.2 0.2 0.2
+      rotation 0 1 0 0
+      scale 0.2 0.2 0.2
     }
     TheTeeterTotter {
       translation 60 3 35
-  rotation 0 1 0 3.14
-  scale 0.2 0.2 0.2
+      rotation 0 1 0 3.14
+      scale 0.2 0.2 0.2
     }
     TheWell {
       translation 20 -0.1 0
-  rotation 0 1 0 0
-  scale 3.5 3.5 3.5
+      rotation 0 1 0 0
+      scale 3.5 3.5 3.5
     }
-    Transform{
+    Transform {
       translation 20 1.2 0
-      children[
+      children [
         Shape {
-           geometry Box {
-             size 4.5 2.65 4.5
-             solid FALSE
-           }
-           appearance Appearance {
-              texture ImageTexture {
-                 url "files/images/well.jpg"
-                 repeatS FALSE
-                 repeatT FALSE
-              }
-           }
-        }
-      ]
-    }
-    Transform{
-      translation 20 0.9 0
-      children[
-        Shape {
-           geometry Box {
-             size 3 2 3
-             solid FALSE
-           }
-           appearance Appearance {
-              material Material { 
-                diffuseColor 0.5 0.5 0.5
-
-               }
-           }
+          geometry Box {
+            size 4.5 2.65 4.5
+            solid FALSE
+          }
+          appearance Appearance {
+            texture ImageTexture {
+              url "files/images/well.jpg"
+              repeatS FALSE
+              repeatT FALSE
+            }
+          }
         }
       ]
     }
     Transform {
-    translation 20 9 0
-    scale 0.8 0.8 0.8
-    children [
-     Inline {
-      url "files/bartwist.wrl"
-      }
-    ]
+      translation 20 0.9 0
+      children [
+        Shape {
+          geometry Box {
+            size 3 2 3
+            solid FALSE
+          }
+          appearance Appearance {
+            material Material { 
+              diffuseColor 0.5 0.5 0.5
+            }
+          }
+        }
+      ]
     }
-]
+    Transform {
+      translation 20 9 0
+      scale 0.8 0.8 0.8
+      children [
+        Inline {
+          url "files/bartwist.wrl"
+        }
+      ]
+    }
+  ]
 }
 
 Transform{
-  
   translation -10 0 10
-
   children[
     USE ThePicnicPlace
   ]
-
 }
 
 
 
 DEF SandPit Transform {
-translation 25 0 -40
-scale 5 5 5
-rotation 0 1 0 1.57
-children [
- Inline {
-  url "files/sandpit.wrl"
-  }
-]
-}
-
-DEF HotAirBalloon Transform{
-
-translation 15 8 40
-
-children[
-
-
-  DEF Balloon Transform {
+  translation 25 0 -40
   scale 5 5 5
   rotation 0 1 0 1.57
   children [
-   Inline {
-    url "files/balloon.wrl"
+    Inline {
+      url "files/sandpit.wrl"
     }
   ]
-  },
+}
 
-  DEF Fence Transform {
-  translation 0 -6 0
-  scale 0.5 2 0.5
-  children [
-   Inline {
-    url "files/fence.wrl"
+DEF HotAirBalloon Transform {
+  translation 15 8 40
+  children[
+    DEF Balloon Transform {
+      scale 5 5 5
+      rotation 0 1 0 1.57
+      children [
+        Inline {
+          url "files/balloon.wrl"
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation 0 -6 0
+      scale 0.5 2 0.5
+      children [
+        Inline {
+          url "files/fence.wrl"
+        }
+      ]
     }
   ]
-  }
-
-
-]
-
-
 }
 
 
-# Car
+
+# Car and its translation
 DEF Car Transform {
-translation 95 1.5 95
-scale 2 2 2
-children [
- Inline {
-  url "files/car.wrl"
-  }
-]
+  translation 95 1.5 95
+  scale 2 2 2
+  children [
+    Inline {
+      url "files/car.wrl"
+    }
+  ]
 }
 
 DEF CarTimer TimeSensor { 
-    cycleInterval 20
-    loop TRUE 
+  cycleInterval 20
+  loop TRUE 
 }
 
 DEF CarPosition PositionInterpolator { 
-   key [ 0 0.5 1] 
-   keyValue [95 1.5 95, 95 1.5 -90, 95 1.5 95] 
+  key [ 0 0.5 1] 
+  keyValue [ 95 1.5 95, 95 1.5 -90, 95 1.5 95 ] 
 } 
 
 DEF CarRotation OrientationInterpolator { 
-   key [ 0 0.5 0.5 1 ] 
-   keyValue [0 1 0 1.57,0 1 0 1.57, 0 1 0 -1.57, 0 1 0 -1.57,]
+  key [ 0 0.5 0.5 1 ] 
+  keyValue [ 0 1 0 1.57, 0 1 0 1.57, 0 1 0 -1.57, 0 1 0 -1.57 ]
 } 
 
 
